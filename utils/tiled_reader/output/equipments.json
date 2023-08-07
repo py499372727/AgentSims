@@ -1,0 +1,847 @@
+[
+    {
+      "id": 1,
+      "type": "counter",
+      "width": 2,
+      "height": 3,
+      "assets": "counter-2-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 2,
+      "type": "goods",
+      "width": 2,
+      "height": 3,
+      "assets": "goods-2-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 3,
+      "type": "goods",
+      "width": 2,
+      "height": 1,
+      "assets": "goods-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 4,
+      "type": "goods",
+      "width": 7,
+      "height": 1,
+      "assets": "goods-7-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 5,
+      "type": "goods",
+      "width": 5,
+      "height": 1,
+      "assets": "goods-5-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 6,
+      "type": "goods",
+      "width": 3,
+      "height": 1,
+      "assets": "goods-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 7,
+      "type": "goods",
+      "width": 4,
+      "height": 1,
+      "assets": "goods-4-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 8,
+      "type": "gate",
+      "width": 3,
+      "height": 1,
+      "assets": "gate-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 9,
+      "type": "table",
+      "width": 3,
+      "height": 1,
+      "assets": "table-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 10,
+      "type": "counter",
+      "width": 9,
+      "height": 3,
+      "assets": "counter-9-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 11,
+      "type": "table",
+      "width": 3,
+      "height": 2,
+      "assets": "table-3-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 12,
+      "type": "table",
+      "width": 5,
+      "height": 2,
+      "assets": "table-5-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 13,
+      "type": "counter",
+      "width": 15,
+      "height": 2,
+      "assets": "counter-15-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 14,
+      "type": "dessert shop gate",
+      "width": 2,
+      "height": 1,
+      "assets": "dessert shop gate-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 15,
+      "type": "gym gate",
+      "width": 3,
+      "height": 1,
+      "assets": "gym gate-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 16,
+      "type": "sports equipments",
+      "width": 9,
+      "height": 1,
+      "assets": "sports equipments-9-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 17,
+      "type": "sports equipments",
+      "width": 5,
+      "height": 1,
+      "assets": "sports equipments-5-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 18,
+      "type": "table",
+      "width": 4,
+      "height": 1,
+      "assets": "table-4-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 19,
+      "type": "table",
+      "width": 2,
+      "height": 1,
+      "assets": "table-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 20,
+      "type": "bed",
+      "width": 2,
+      "height": 2,
+      "assets": "bed-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 21,
+      "type": "hearth",
+      "width": 1,
+      "height": 2,
+      "assets": "hearth-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 22,
+      "type": "toilet",
+      "width": 1,
+      "height": 2,
+      "assets": "toilet-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 23,
+      "type": " fridge",
+      "width": 1,
+      "height": 2,
+      "assets": " fridge-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 24,
+      "type": "sink",
+      "width": 2,
+      "height": 2,
+      "assets": "sink-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 25,
+      "type": "worktop",
+      "width": 3,
+      "height": 2,
+      "assets": "worktop-3-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 26,
+      "type": "shower",
+      "width": 1,
+      "height": 1,
+      "assets": "shower-1-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 27,
+      "type": "swing",
+      "width": 2,
+      "height": 1,
+      "assets": "swing-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 28,
+      "type": "slide",
+      "width": 3,
+      "height": 3,
+      "assets": "slide-3-3.0",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 29,
+      "type": "bench",
+      "width": 2,
+      "height": 2,
+      "assets": "bench-2-2.0",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 30,
+      "type": "bench",
+      "width": 1,
+      "height": 2,
+      "assets": "bench-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 31,
+      "type": "bench",
+      "width": 2,
+      "height": 3,
+      "assets": "bench-2-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 32,
+      "type": "bin",
+      "width": 2,
+      "height": 1,
+      "assets": "bin-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 33,
+      "type": "bench",
+      "width": 2,
+      "height": 1,
+      "assets": "bench-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 34,
+      "type": "bin",
+      "width": 2,
+      "height": 2,
+      "assets": "bin-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 35,
+      "type": "bench",
+      "width": 3,
+      "height": 1,
+      "assets": "bench-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 36,
+      "type": "sports equipments",
+      "width": 1,
+      "height": 1,
+      "assets": "sports equipments-1-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 37,
+      "type": "sports equipments",
+      "width": 1,
+      "height": 3,
+      "assets": "sports equipments-1-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 38,
+      "type": "sports equipments",
+      "width": 3,
+      "height": 1,
+      "assets": "sports equipments-3-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 39,
+      "type": "sports equipments",
+      "width": 2,
+      "height": 1,
+      "assets": "sports equipments-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 40,
+      "type": "sports equipments",
+      "width": 2,
+      "height": 2,
+      "assets": "sports equipments-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 41,
+      "type": "sports equipments",
+      "width": 2,
+      "height": 3,
+      "assets": "sports equipments-2-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 42,
+      "type": "sports equipments",
+      "width": 7,
+      "height": 1,
+      "assets": "sports equipments-7-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 43,
+      "type": "sports equipments",
+      "width": 1,
+      "height": 2,
+      "assets": "sports equipments-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 44,
+      "type": "sports equipments",
+      "width": 1,
+      "height": 1,
+      "assets": "sports equipments-1-1.0",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 45,
+      "type": "sofa",
+      "width": 2,
+      "height": 1,
+      "assets": "sofa-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 46,
+      "type": "hearth",
+      "width": 4,
+      "height": 2,
+      "assets": "hearth-4-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 47,
+      "type": "fridge",
+      "width": 1,
+      "height": 2,
+      "assets": "fridge-1-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 48,
+      "type": "television",
+      "width": 2,
+      "height": 1,
+      "assets": "television-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 49,
+      "type": "phone",
+      "width": 1,
+      "height": 1,
+      "assets": "phone-1-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 50,
+      "type": "shower",
+      "width": 2,
+      "height": 2,
+      "assets": "shower-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 51,
+      "type": "wardrobe",
+      "width": 3,
+      "height": 2,
+      "assets": "wardrobe-3-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 52,
+      "type": "cupboard",
+      "width": 1,
+      "height": 1,
+      "assets": "cupboard-1-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 53,
+      "type": "gate",
+      "width": 2,
+      "height": 1,
+      "assets": "gate-2-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 54,
+      "type": "desk",
+      "width": 5,
+      "height": 1,
+      "assets": "desk-5-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 55,
+      "type": "desk",
+      "width": 4,
+      "height": 1,
+      "assets": "desk-4-1",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 56,
+      "type": "gate",
+      "width": 2,
+      "height": 2,
+      "assets": "gate-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 57,
+      "type": "counter",
+      "width": 3,
+      "height": 3,
+      "assets": "counter-3-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 58,
+      "type": "exhibits",
+      "width": 9,
+      "height": 11,
+      "assets": "exhibits-9-11",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 59,
+      "type": "exhibits",
+      "width": 9,
+      "height": 3,
+      "assets": "exhibits-9-3",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 60,
+      "type": "hearth",
+      "width": 3,
+      "height": 2,
+      "assets": "hearth-3-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 61,
+      "type": "bed",
+      "width": 6,
+      "height": 2,
+      "assets": "bed-6-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 62,
+      "type": "table",
+      "width": 2,
+      "height": 2,
+      "assets": "table-2-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 63,
+      "type": "fridge",
+      "width": 3,
+      "height": 2,
+      "assets": "fridge-3-2",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 64,
+      "type": "counter",
+      "width": 3,
+      "height": 6,
+      "assets": "counter-3-6",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    },
+    {
+      "id": 65,
+      "type": "cafe table",
+      "width": 3,
+      "height": 1,
+      "assets": "cafe table-3.0-1.0",
+      "description": "",
+      "functions": [
+        
+      ],
+      "hireCapacity": 0,
+      "livingCapacity": 0
+    }
+  ]

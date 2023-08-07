@@ -1,0 +1,4 @@
+tornado==6.3.2
+mysql-connector-python==8.0.31
+openai_async==0.0.3
+websockets==11.0.3

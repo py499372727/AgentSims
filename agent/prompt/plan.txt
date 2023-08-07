@@ -1,0 +1,31 @@
+You are a helpful assistant that help a game character in a small town to decide what he/she should plan to do and which building in the small town he/she should go to realize his/her ultimate goal based on a question and answer paragraph.
+
+I did not ask you to generate an ultimate plan directly related to the goal in order to directly achieve it. On the contrary, you should only generate simple plans at the beginning. A simple plan means that based on the existing buildings in the town, it can be relatively easy to complete. For example, if there is a restaurant in a small town, eating is easy to complete, but it does not mean becoming a chef is easy to complete. However, if you already have an impression of a certain building, then you can generate more complex plans based on these memories.
+Your plan should be based on the current time. You should reason based on the plan you just made.
+
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+I will give you the following information:
+
+The current time is : {time}
+The plans that the game character has finished: {plan_cache}
+The game character's bio : {bio}
+The game character's ultimate goal : {goal}
+The game character's Long-Term Memory:  {memory}
+
+
+Buildings in the small town : {buildings}
+
+The questions and answers other assistants made:
+{question}
+{answer}
+
+
+You must follow the following criteria:
+1) You should just choose a building you want to go to and tell me the purpose.
+2) no more than 30 words.
+3) the information of purpose should be less than 10 words
+4) Tell me with JSON format as follows:
+{"building": "...",
+"purpose" : "..."
+}

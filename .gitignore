@@ -1,0 +1,8 @@
+ws_server.py
+ws_client.py
+api_key.json
+__pycache__/
+*.log
+snapshot/app.json
+snapshot/mayors.json
+*.pyc

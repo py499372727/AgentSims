@@ -1,0 +1,864 @@
+[
+  {
+    "id": 1,
+    "type": "counter",
+    "width": 2,
+    "height": 3,
+    "assets": "counter-2-3",
+    "description": "This is the counter of a store. The game character can only buy one type of things on the menu at this store. If the customer wants something on the menu, the continue_ Time is 0.5 hours, the bought_thing is the thing he/she bought, the amount is a number of the quantity he/she needs, and the result is tell the character that he bought this kind of goods and the amount and say thank you for coming. If the character wants more than one type of things on the menu, the continue_ Time is 0.5 hours, the result is to tell him/her he/she should choose one thing to buy at once. If a game character's action here is not to purchase a specific goods, The continue_ Time is 0.5 hours, the result is to tell the character to specify what goods he/she needs and tell him the menu, without spending any money. If the customer want something else, the continue_ Time is 0.5 hours, the result is to tell him we don't sell this and say sorry, without spending any money.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Sell goods", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Buy goods", "onlyOwner": false}
+    ],
+    "economic": 1,
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 2,
+    "type": "goods",
+    "width": 2,
+    "height": 3,
+    "assets": "goods-2-3",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 3,
+    "type": "goods",
+    "width": 2,
+    "height": 1,
+    "assets": "goods-2-1",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 4,
+    "type": "goods",
+    "width": 7,
+    "height": 1,
+    "assets": "goods-7-1",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 5,
+    "type": "goods",
+    "width": 5,
+    "height": 1,
+    "assets": "goods-5-1",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 6,
+    "type": "goods",
+    "width": 3,
+    "height": 1,
+    "assets": "goods-3-1",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 7,
+    "type": "goods",
+    "width": 4,
+    "height": 1,
+    "assets": "goods-4-1",
+    "description": "There are a variety of goods here. If some game character take operation with this equipment, they cannot just take the goods away. If they want to buy something, they should go to the counter and pay the money. The continue_time is 0.5 hours, the result is to tell the charater if they want to buy something, then go to the counter and pay. They will not cost any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Carry goods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 8,
+    "type": "gate",
+    "width": 3,
+    "height": 1,
+    "assets": "gate-3-1",
+    "description": "",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Open gate", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Close gate", "onlyOwner": true}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 9,
+    "type": "table",
+    "width": 3,
+    "height": 1,
+    "assets": "table-3-1",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drink here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 10,
+    "type": "counter",
+    "width": 9,
+    "height": 3,
+    "assets": "counter-9-3",
+    "description": "This is the counter of a restaurant. The game character can only buy one type of things on the menu at this restaurant. If the customer wants something on the menu, the continue_ Time is 0.5 hours, the bought_thing is the thing he/she bought, the amount is a number of the quantity he/she needs, and the result is tell the character that he bought this kind of food and the amount and say thank you for coming. If the character wants more than one type of things on the menu, the continue_ Time is 0.5 hours, the result is to tell him/her he/she should choose one thing to buy at once. If a game character's action here is not to purchase a specific food, The continue_ Time is 0.5 hours, the result is to tell the character to specify what food he/she needs and tell him the menu, without spending any money. If the customer want something else, the continue_ Time is 0.5 hours, the result is to tell him we don't sell this and say sorry, without spending any money.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Sell goods", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Buy goods", "onlyOwner": false}
+    ],
+    "economic": 10,
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 11,
+    "type": "table",
+    "width": 3,
+    "height": 2,
+    "assets": "table-3-2",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drink here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 12,
+    "type": "table",
+    "width": 5,
+    "height": 2,
+    "assets": "table-5-2",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drink here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 13,
+    "type": "counter",
+    "width": 15,
+    "height": 2,
+    "assets": "counter-15-2",
+    "description": "This is the counter of a dessert shop. The game character can only buy one type of things on the menu at this dessert shop. If the customer wants something on the menu, the continue_ Time is 0.5 hours, the bought_thing is the thing he/she bought, the amount is a number of the quantity he/she needs, and the result is tell the character that he bought this kind of dessert and the amount and tell him/her that he/she needs to go to a nearby table to enjoy the dessert. If the character wants more than one type of things on the menu, the continue_ Time is 0.5 hours, the result is to tell him/her he/she should choose one thing to buy at once. If a game character's action here is not to purchase a specific dessert, The continue_ Time is 0.5 hours, the result is to tell the character to specify what dessert he/she needs and tell him the menu, without spending any money. If the customer want something else, the continue_ Time is 0.5 hours, the result is to tell him we don't sell this and say sorry, without spending any money.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Sell goods", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Buy goods", "onlyOwner": false}
+    ],
+    "economic": 13,
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 14,
+    "type": "dessert shop gate",
+    "width": 2,
+    "height": 1,
+    "assets": "dessert shop gate-2-1",
+    "description": "",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Open gate", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Close gate", "onlyOwner": true}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 15,
+    "type": "gym gate",
+    "width": 3,
+    "height": 1,
+    "assets": "gym gate-3-1",
+    "description": "",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Open gate", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Close gate", "onlyOwner": true}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 16,
+    "type": "sports equipments",
+    "width": 9,
+    "height": 1,
+    "assets": "sports equipments-9-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 17,
+    "type": "sports equipments",
+    "width": 5,
+    "height": 1,
+    "assets": "sports equipments-5-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 18,
+    "type": "table",
+    "width": 4,
+    "height": 1,
+    "assets": "table-4-1",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drink anything that can be eaten/drunk here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 19,
+    "type": "table",
+    "width": 2,
+    "height": 1,
+    "assets": "table-2-1",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drink anything that can be eaten/drunk here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 20,
+    "type": "bed",
+    "width": 2,
+    "height": 2,
+    "assets": "bed-2-2",
+    "description": "Any game character can only sleep here. If so, the continue_ Time is 7 hours, the result is to tell the character that he/she feels better after sleeping. If they take any operations not related to sleeping, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sleep here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 200, "action": "Sleep", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 2
+  },
+  {
+    "id": 21,
+    "type": "hearth",
+    "width": 1,
+    "height": 2,
+    "assets": "hearth-1-2",
+    "description": "Any game character can cook meals here only if he/she have ingredients. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have cook a meal and should go to a table nearby to have it. If they have no ingredients, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have ingredients and should retrieve food from the fridge nearby. If they take any operations not related to cooking meals, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only cook meals here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 50, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 22,
+    "type": "toilet",
+    "width": 1,
+    "height": 2,
+    "assets": "toilet-1-2",
+    "description": "Any game character can use toilet here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have used toilet and feel better. If they take any operations not related to using toilet, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only use toilet here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Use toilet", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 23,
+    "type": "fridge",
+    "width": 1,
+    "height": 2,
+    "assets": " fridge-1-2",
+    "description": "Any game character can store/retrieve foods here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have store/retrieve foods. If they take any operations not related to store/retrieve foods, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only store/retrieve foods here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Save foods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 24,
+    "type": "sink",
+    "width": 2,
+    "height": 2,
+    "assets": "sink-2-2",
+    "description": "Any game character can wash one's face and rinse one's mouth here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have wash one's face and rinse one's mouth and feel better. If they take any operations not related to wash one's face and rinse one's mouth, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only wash one's face and rinse one's mouth here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Wash hands", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 25,
+    "type": "worktop",
+    "width": 3,
+    "height": 2,
+    "assets": "worktop-3-2",
+    "description": "Any game character can cook meals here only if he/she have ingredients. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have cook a meal and should go to a table nearby to have it. If they have no ingredients, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have ingredients and should retrieve food from the fridge nearby. If they take any operations not related to cooking meals, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only cook meals here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Prepare foods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 26,
+    "type": "shower",
+    "width": 1,
+    "height": 1,
+    "assets": "shower-1-1",
+    "description": "Any game character can take a shower here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have taken a shower. If they take any operations not related to taking a shower, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take a shower here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Take a shower", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 27,
+    "type": "swing",
+    "width": 2,
+    "height": 1,
+    "assets": "swing-2-1",
+    "description": "Any game character can play swing here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have played on a swing and be more happier. If they take any operations not related to swinging, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only play swing here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Play swing", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 28,
+    "type": "slide",
+    "width": 3,
+    "height": 3,
+    "assets": "slide-3-3.0",
+    "description": "Any game character can play slide here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have played slide and be more happier. If they take any operations not related to playing slide, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only play slide here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Play slide", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 29,
+    "type": "bench",
+    "width": 2,
+    "height": 2,
+    "assets": "bench-2-2.0",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 30,
+    "type": "bench",
+    "width": 1,
+    "height": 2,
+    "assets": "bench-1-2",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 31,
+    "type": "bench",
+    "width": 2,
+    "height": 3,
+    "assets": "bench-2-3",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 32,
+    "type": "bin",
+    "width": 2,
+    "height": 1,
+    "assets": "bin-2-1",
+    "description": "Any game character can throw away rubbish here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have thrown away rubbish. If they take any operations not related to throw away rubbish, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only throw away rubbish here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Clean around", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 33,
+    "type": "bench",
+    "width": 2,
+    "height": 1,
+    "assets": "bench-2-1",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 34,
+    "type": "bin",
+    "width": 2,
+    "height": 2,
+    "assets": "bin-2-2",
+    "description": "Any game character can throw away rubbish here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have thrown away rubbish. If they take any operations not related to throw away rubbish, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only throw away rubbish here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Clean around", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 35,
+    "type": "bench",
+    "width": 3,
+    "height": 1,
+    "assets": "bench-3-1",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 36,
+    "type": "sports equipments",
+    "width": 1,
+    "height": 1,
+    "assets": "sports equipments-1-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 37,
+    "type": "sports equipments",
+    "width": 1,
+    "height": 3,
+    "assets": "sports equipments-1-3",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 38,
+    "type": "sports equipments",
+    "width": 3,
+    "height": 1,
+    "assets": "sports equipments-3-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 39,
+    "type": "sports equipments",
+    "width": 2,
+    "height": 1,
+    "assets": "sports equipments-2-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 40,
+    "type": "sports equipments",
+    "width": 2,
+    "height": 2,
+    "assets": "sports equipments-2-2",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 41,
+    "type": "sports equipments",
+    "width": 2,
+    "height": 3,
+    "assets": "sports equipments-2-3",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 42,
+    "type": "sports equipments",
+    "width": 7,
+    "height": 1,
+    "assets": "sports equipments-7-1",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 43,
+    "type": "sports equipments",
+    "width": 1,
+    "height": 2,
+    "assets": "sports equipments-1-2",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 44,
+    "type": "sports equipments",
+    "width": 1,
+    "height": 1,
+    "assets": "sports equipments-1-1.0",
+    "description": "Any game character can do exercise here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she feels better after exercise. If they take any operations not related to sports, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take exercise here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 50, "cost": 200, "action": "exerice", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 45,
+    "type": "sofa",
+    "width": 2,
+    "height": 1,
+    "assets": "sofa-2-1",
+    "description": "Any game character can sit/have a rest here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have sat/had a rest and feel better. If they take any operations not related to sitting/having a rest, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only sit/have a rest here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 10, "cost": 0, "action": "Have a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 46,
+    "type": "hearth",
+    "width": 4,
+    "height": 2,
+    "assets": "hearth-4-2",
+    "description": "Any game character can cook meals here only if he/she have ingredients. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have cook a meal and should go to a table nearby to have it. If they have no ingredients, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have ingredients and should retrieve food from the fridge nearby. If they take any operations not related to cooking meals, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only cook meals here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 50, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 47,
+    "type": "fridge",
+    "width": 1,
+    "height": 2,
+    "assets": "fridge-1-2",
+    "description": "Any game character can store/retrieve foods here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have store/retrieve foods. If they take any operations not related to store/retrieve foods, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only store/retrieve foods here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Save foods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 48,
+    "type": "television",
+    "width": 2,
+    "height": 1,
+    "assets": "television-2-1",
+    "description": "Any game character can watch TV here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have watched TV and had a good time. If they take any operations not related to watching TV, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only watch TV here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Watch TV", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 49,
+    "type": "phone",
+    "width": 1,
+    "height": 1,
+    "assets": "phone-1-1",
+    "description": "Any game character can make a phone call here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have made a phone call. If they take any operations not related to making a phone call, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only make a phone call here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 10, "action": "Make a Phone Call", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 50,
+    "type": "shower",
+    "width": 2,
+    "height": 2,
+    "assets": "shower-2-2",
+    "description": "Any game character can take a shower here. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she have taken a shower. If they take any operations not related to taking a shower, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only take a shower here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Take a shower", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 51,
+    "type": "wardrobe",
+    "width": 3,
+    "height": 2,
+    "assets": "wardrobe-3-2",
+    "description": "",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Check clothes", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 52,
+    "type": "cupboard",
+    "width": 1,
+    "height": 1,
+    "assets": "cupboard-1-1",
+    "description": "",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Drink", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 53,
+    "type": "gate",
+    "width": 2,
+    "height": 1,
+    "assets": "gate-2-1",
+    "description": "",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Open gate", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Close gate", "onlyOwner": true}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 54,
+    "type": "desk",
+    "width": 5,
+    "height": 1,
+    "assets": "desk-5-1",
+    "description": "Any game character can work here. If some one take operation which is not related to working, he/she needs to be reminded that he/she can only work here to make money. If some one work here, the continue_ Time is 2 hours, the result is that he/she is tired after work and need to relax, the earn is 200.",
+    "functions": [
+      {"earn": 500, "cost": 0, "action": "Earn money", "onlyOwner": false}
+    ],
+    "economic": 54,
+    "hireCapacity": 1,
+    "livingCapacity": 0
+  },
+  {
+    "id": 55,
+    "type": "desk",
+    "width": 4,
+    "height": 1,
+    "assets": "desk-4-1",
+    "description": "Any game character can work here. If some one take operation which is not related to working, he/she needs to be reminded that he/she can only work here to make money. If some one work here, the continue_ Time is 2 hours, the result is that he/she is tired after work and need to relax, the earn is 200.",
+    "functions": [
+      {"earn": 500, "cost": 0, "action": "Earn money", "onlyOwner": false}
+    ],
+    "economic": 55,
+    "hireCapacity": 1,
+    "livingCapacity": 0
+  },
+  {
+    "id": 56,
+    "type": "gate",
+    "width": 2,
+    "height": 2,
+    "assets": "gate-2-2",
+    "description": "",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Open gate", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Close gate", "onlyOwner": true}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 57,
+    "type": "counter",
+    "width": 3,
+    "height": 3,
+    "assets": "counter-3-3",
+    "description": "This is the counter of a museum. Any game character can buy a ticket to enjoy some exhibits here. If a game character takes the action of purchasing a ticket, the continue_ Time is 0.5 hours, the result is to tell the character that he bought a ticket, but he needs to go to a nearby exhibit to enjoy the exhibit. If the game character has a ticket of this exhibit, The continue_ Time is 0.5 hours, it cost no money, the result is to tell the character that he/she has a ticket and can go straight to the nearby exhibit to enjoy the exhibit. If a game character's action here is not to purchase a ticket, The continue_ Time is 0.5 hours, the result is to tell the character to buy a ticket, without spending any money.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Sell goods", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Buy goods", "onlyOwner": false}
+    ],
+    "economic": 57,
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 58,
+    "type": "exhibits",
+    "width": 9,
+    "height": 11,
+    "assets": "exhibits-9-11",
+    "description": "There are a variety of exhibits here. If some game character take operation with this equipment, they cannot just take the exhibits away. If they want to enjoy/watch the exhibits and have not bought any ticket, they should go to the counter and buy a ticket. If so, the continue_time is 0.5 hours, the result is to tell the charater if they want to enjoy the exhibits, then go to the counter and buy a ticket. If they want to enjoy/watch the exhibits and have bought any ticket, they can enjoy/watch the exhibits here. If so, the continue_time is 2 hours, the result is to tell the charater that the have enjoyed/watched the exhibits well. If they want to take other operations,  the continue_time is 0.5 hours, the result is to tell the charater that if they want to enjoy exhibits here, please go to the counter and buy a ticket. They will not cost any money here.",
+    "functions": [
+      {"earn": 100, "cost": 50, "action": "Gain knowledge", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 59,
+    "type": "exhibits",
+    "width": 9,
+    "height": 3,
+    "assets": "exhibits-9-3",
+    "description": "There are a variety of exhibits here. If some game character take operation with this equipment, they cannot just take the exhibits away.  If they want to enjoy/watch the exhibits and have not bought any ticket, they should go to the counter and buy a ticket. If so, the continue_time is 0.5 hours, the result is to tell the charater if they want to enjoy the exhibits, then go to the counter and buy a ticket. If they want to enjoy/watch the exhibits and have bought any ticket, they can enjoy/watch the exhibits here. If so, the continue_time is 2 hours, the result is to tell the charater that the have enjoyed/watched the exhibits well. If they want to take other operations,  the continue_time is 0.5 hours, the result is to tell the charater that if they want to enjoy exhibits here, please go to the counter and buy a ticket. They will not cost any money here.",
+    "functions": [
+      {"earn": 100, "cost": 50, "action": "Gain knowledge", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 60,
+    "type": "hearth",
+    "width": 3,
+    "height": 2,
+    "assets": "hearth-3-2",
+    "description": "",
+    "functions": [
+      {"earn": 0, "cost": 50, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 61,
+    "type": "bed",
+    "width": 6,
+    "height": 2,
+    "assets": "bed-6-2",
+    "description": "",
+    "functions": [
+      {"earn": 0, "cost": 200, "action": "Sleep", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 4
+  },
+  {
+    "id": 62,
+    "type": "table",
+    "width": 2,
+    "height": 2,
+    "assets": "table-2-2",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drunk here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 63,
+    "type": "fridge",
+    "width": 3,
+    "height": 2,
+    "assets": "fridge-3-2",
+    "description": "Any game character can store/retrieve foods here. If so, the continue_ Time is 0.5 hours, the result is to tell the character that he/she have store/retrieve foods. If they take any operations not related to store/retrieve foods, the continue_ Time is 0.5 hours, the result is to tell the character that he/she can only store/retrieve foods here. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 0, "cost": 20, "action": "Save foods", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 64,
+    "type": "counter",
+    "width": 3,
+    "height": 6,
+    "assets": "counter-3-6",
+    "description": "This is the counter of a cafe. The game character can only buy one type of things on the menu at this coffee shop. If the customer wants something on the menu, the continue_ Time is 0.5 hours, the bought_thing is the thing he/she bought, the amount is a number of the quantity he/she needs, and the result is tell the character that he bought this kind of coffee and the amount and tell him/her that he/she needs to go to a nearby table to enjoy the coffee. If the character wants more than one type of things on the menu, the continue_ Time is 0.5 hours, the result is to tell him/her he/she should choose one thing to buy at once. If a game character's action here is not to purchase a specific coffee, The continue_ Time is 0.5 hours, the result is to tell the character to specify what coffee he/she needs and tell him the menu, without spending any money. If the customer want something else, the continue_ Time is 0.5 hours, the result is to tell him we don't sell this and say sorry, without spending any money.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Sell goods", "onlyOwner": true},
+      {"earn": 10, "cost": 200, "action": "Buy goods", "onlyOwner": false}
+    ],
+    "economic": 64,
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  },
+  {
+    "id": 65,
+    "type": "cafe table",
+    "width": 3,
+    "height": 1,
+    "assets": "cafe table-3.0-1.0",
+    "description": "Any game character can have a meal/have a dessert/have a coffee/take a rest/eat anything that can be eaten/drunk here only if what he/she want to eat/have/drink has been bought. If so, the continue_ Time is 1 hours, the result is to tell the character that he/she has finished the meal/drink/eating. If they have not bought/had anything, the continue_ Time is 0.5 hours, the result is to tell the character that he/she doesn't have this and should bought something to drink/eat at the counter. He/she do not spend any money here.",
+    "functions": [
+      {"earn": 200, "cost": 0, "action": "Take a rest", "onlyOwner": false}
+    ],
+    "hireCapacity": 0,
+    "livingCapacity": 0
+  }
+]

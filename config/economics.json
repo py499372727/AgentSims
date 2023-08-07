@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "menu": {
+            "chicken": 20,
+            "beef": 50,
+            "asparagus": 5,
+            "broccoli": 3
+        },
+        "salary": 0
+    },
+    {
+        "id": 10,
+        "menu": {
+            "pasta": 30,
+            "soup": 25,
+            "steak": 60,
+            "salad": 25
+        },
+        "salary": 0
+    },
+    {
+        "id": 13,
+        "menu": {
+            "cupcake": 7,
+            "pie": 15,
+            "cheesecake": 28
+        },
+        "salary": 0
+    },
+    {
+        "id": 54,
+        "menu": {
+        },
+        "salary": 200
+    },
+    {
+        "id": 55,
+        "menu": {
+        },
+        "salary": 200
+    },
+    {
+        "id": 57,
+        "menu": {
+            "ticket": 20
+        },
+        "salary": 0
+    },
+    {
+        "id": 64,
+        "menu": {
+            "latte": 15,
+            "cappuccino": 21,
+            "Americano": 18
+        },
+        "salary": 0
+    }
+]

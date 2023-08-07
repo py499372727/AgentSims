@@ -1,0 +1,23 @@
+{
+    "assets": [
+        "premade_01",
+        "premade_02",
+        "premade_03",
+        "premade_04",
+        "premade_05",
+        "premade_06",
+        "premade_07",
+        "premade_08"
+    ],
+    "models": [
+        "gpt-4",
+        "gpt-3.5"
+    ],
+    "memorySystems": [
+        "LongShortTermMemories"
+    ],
+    "planSystems": [
+        "QAFramework",
+        "JustPlan"
+    ]
+}
