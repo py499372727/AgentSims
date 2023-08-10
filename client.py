@@ -15,17 +15,20 @@ commands = {
     "command.map.GetMapScene": {},
     "command.map.GetMapTown": {},
     "command.map.Navigate": {"x": int, "y": int},
-    "command.npc.Create": {"asset": str, "model": str, "memorySystem": str, "planSystem": str, "nickname": str, "bio": str, "goal": str, "cash": int},
+    "command.npc.Create": {"asset": str, "model": str, "memorySystem": str, "planSystem": str, "nickname": str,
+                           "bio": str, "goal": str, "cash": int},
     "command.npc.GetNPCInfo": {"NPCID": int},
     "command.npc.GetNPCs": {},
     "command.player.GetPlayerInfo": {},
     "command.timetick.Tick": {},
 }
 
+
 async def listen_server(websocket):
     while True:
         msg = await websocket.recv()
         print(f"Received: {msg}")
+
 
 async def send_input(websocket):
     # info = json.dumps({"uri": "command.auth.Register", "method": "POST", "data": {"nickname": "fisher", "email": "abc@def.com", "cryptoPWD": "WWW"}}, ensure_ascii=False, separators=(",", ":"))
@@ -41,23 +44,29 @@ async def send_input(websocket):
         for key, func in commands[command].items():
             param = func(input(f"Enter param {key}: "))
             data[key] = param
-        request = json.dumps({"uid": uid, "uri": command, "data": data, "method": "POST"}, ensure_ascii=False, separators=(",", ":"))
+        request = json.dumps({"uid": uid, "uri": command, "data": data, "method": "POST"}, ensure_ascii=False,
+                             separators=(",", ":"))
         print(f"Send: {request}")
         await websocket.send(request)
+
 
 async def ping(websocket):
     # info = json.dumps({"uri": "command.auth.Register", "method": "POST", "data": {"nickname": "fisher", "email": "abc@def.com", "cryptoPWD": "WWW"}}, ensure_ascii=False, separators=(",", ":"))
     # await websocket.send(info)
     uid = "Player-10001"
     while True:
-        info = json.dumps({"uid": uid, "uri": "ping", "method": "GET", "data": {}}, ensure_ascii=False, separators=(",", ":"))
+        info = json.dumps({"uid": uid, "uri": "ping", "method": "GET", "data": {}}, ensure_ascii=False,
+                          separators=(",", ":"))
         print(f"Send: {info}")
         await websocket.send(info)
         await asyncio.sleep(10)
 
+
 async def debug(websocket):
     # register
-    info = json.dumps({"uri": "command.auth.Register", "method": "POST", "data": {"nickname": "Lixing", "email": "Lixing@163.com", "cryptoPWD": "123456"}}, ensure_ascii=False, separators=(",", ":"))
+    info = json.dumps({"uri": "command.auth.Register", "method": "POST",
+                       "data": {"nickname": "Lixing", "email": "Lixing@163.com", "cryptoPWD": "123456"}},
+                      ensure_ascii=False, separators=(",", ":"))
     print(f"Send: {info}")
     await websocket.send(info)
     msg = await websocket.recv()
@@ -136,17 +145,17 @@ async def debug(websocket):
     # await websocket.send(fake_sendings)
     # msg = await websocket.recv()
     # print(f"Received: {msg}")
-    start_mayor = json.dumps({"uid": uid, "uri": "command.starter.MayorStarter", "method": "POST", "data": {}}, ensure_ascii=False, separators=(",", ":"))
-    print(f"Send: {start_mayor}")
-    await websocket.send(start_mayor)
-    msg = await websocket.recv()
-    print(f"Received: {msg}")
-    await asyncio.sleep(10)
-    start_ticks = json.dumps({"uid": uid, "uri": "command.starter.TickStarter", "method": "POST", "data": {}}, ensure_ascii=False, separators=(",", ":"))
-    print(f"Send: {start_ticks}")
-    await websocket.send(start_ticks)
-    msg = await websocket.recv()
-    print(f"Received: {msg}")
+    # start_mayor = json.dumps({"uid": uid, "uri": "command.starter.MayorStarter", "method": "POST", "data": {}}, ensure_ascii=False, separators=(",", ":"))
+    # print(f"Send: {start_mayor}")
+    # await websocket.send(start_mayor)
+    # msg = await websocket.recv()
+    # print(f"Received: {msg}")
+    # await asyncio.sleep(10)
+    # start_ticks = json.dumps({"uid": uid, "uri": "command.starter.TickStarter", "method": "POST", "data": {}}, ensure_ascii=False, separators=(",", ":"))
+    # print(f"Send: {start_ticks}")
+    # await websocket.send(start_ticks)
+    # msg = await websocket.recv()
+    # print(f"Received: {msg}")
     # building.Create
     # time.sleep(3)
     # building_type = 3
@@ -248,14 +257,18 @@ async def debug(websocket):
     # print(f"Received: {msg}")
     # # ChatToNPC
     # # time.sleep(3)
-    # content = "Hi, how do you feel abount the town?"
-    # chat = json.dumps({"uid": uid, "uri": "command.chat.ChatToNPC", "method": "POST", "data": {"NPCID": f"NPC-{npc_id}", "content": content}}, ensure_ascii=False, separators=(",", ":"))
-    # print(f"Send: {chat}")
-    # await websocket.send(chat)
-    # msg = await websocket.recv()
-    # print(f"Received: {msg}")
+    npc_id = 10001
+    content = "Hi, how do you feel abount the town?"
+    chat = json.dumps({"uid": uid, "uri": "command.chat.ChatWithNPC", "method": "POST",
+                       "data": {"NPCID": f"NPC-{npc_id}", "content": content}}, ensure_ascii=False,
+                      separators=(",", ":"))
+    print(f"Send: {chat}")
+    await websocket.send(chat)
+    msg = await websocket.recv()
+    print(f"Received: {msg}")
     server_task = asyncio.create_task(listen_server(websocket))
     await server_task
+
 
 async def main():
     async with websockets.connect("ws://localhost:8000/ws", ping_interval=None) as websocket:
@@ -265,10 +278,11 @@ async def main():
         debug_task = asyncio.create_task(debug(websocket))
         # input_task = asyncio.create_task(send_input(websocket))
         ping_task = asyncio.create_task(ping(websocket))
-        
+
         # await server_task
         await debug_task
         # await input_task
         await ping_task
+
 
 asyncio.run(main())
