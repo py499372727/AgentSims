@@ -27,6 +27,16 @@ The file parameter example is:
 ``` 
 If you want to deploy your own model, see <a href="https://github.com/py499372727/AgentSims/wiki" title="DOCS">DOCS</a>.
 
+## Folder Creation
+Before running, please
+```
+mkdir snapshot
+mkdir logs
+```
+In addition, we recommend modifying the ***count_limit*** (number of loops per run) and ***cooldown*** (cooldown time between runs) in ***config/app.json*** to suitable values before running, in order to balance protection of your API key and experiment runtime efficiency.
+
+If you encounter any issues during runtime, please first refer to our <a href="https://github.com/py499372727/AgentSims/wiki" title="DOCS">DOCS</a> in the wiki. If not resolved, please raise an issue or contact us directly.
+
 --------------------------------------
 To use our system, please follow these steps:
 
@@ -66,15 +76,17 @@ Start server:
 ./restart.sh
 ```
 When you see
-```bash
+```
 --------Server Started--------
 ```
 in Server Terminal, the server has been started successfully.
 ## 5.Run Client
-Once the server has started successfully, please launch the client. In the current version, we provide a web-based client. Please open /client/index.html in your browser.
+Once the server has started successfully, please launch the client. In the current version, we provide a web-based client. Please open ***client/index.html*** in your browser.
+
+Note: Sometimes the web client fails to open correctly. We recommend right-clicking the ***index.html*** in your python IDE and select ***open in browser***. If you are familiar with ***nginx***, that is also a great choice. 
 
 When you see
-```bash
+```
 somebody linked.
 ```
 in Server Terminal, the client has been started successfully.
