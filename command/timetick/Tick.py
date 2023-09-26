@@ -357,10 +357,14 @@ class Tick(CommandBase):
         return counter
 
     async def execute_eval(self):
-        print(f'len of evals is {len(self.app.evals)}')
+        # print(f'len of evals is {len(self.app.evals)}')
+        current_tick = self.app.tick_state["tick_count"]
         for eval_name, eval_module in self.app.evals.items():
-            if self.app.tick_state["tick_count"] % eval_module.interval == 0: 
+            if  current_tick % eval_module.interval == 0: 
                 print(f'{eval_name}: {eval_module()}')
+                with open('logs/eval_results','a+') as f:
+                    f.write(f'tick {current_tick}: {eval_name}: {eval_module()}')
+                    
 
     async def execute(self, params):
         # update timetick
