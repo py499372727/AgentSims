@@ -20,7 +20,7 @@ class Tick(CommandBase):
     
     def get_entity_model(self, uid: str):
         entity_type = uid.partition("-")[0]
-        entity_id = int(uid.partition("-")[2])
+        entity_id = int(uid.partition("-")[2]) #TODO, why not use split ?
         entity_model = self.get_single_model(entity_type, entity_id, create=False)
         map_id = entity_id
         if entity_type == "NPC" and entity_model:
@@ -296,6 +296,7 @@ class Tick(CommandBase):
     
     async def solve_chat(self, chat):
         # finished chatting
+        # chat is uid?
         counter = 0
         entity_type, entity_id, entity_model, map_id, map_model = self.get_entity_model(chat)
         if not entity_model:
@@ -355,8 +356,16 @@ class Tick(CommandBase):
             counter += 1
         return counter
 
+    async def execute_eval(self):
+        print(f'len of evals is {len(self.app.evals)}')
+        for eval_name, eval_module in self.app.evals.items():
+            if self.app.tick_state["tick_count"] % eval_module.interval == 0: 
+                print(f'{eval_name}: {eval_module()}')
+
     async def execute(self, params):
         # update timetick
+        if self.app.tick_state["start"]: # (self.app.tick_state["tick_count"] % self.app.config.eval_interval_tick) == 0 
+            asyncio.create_task(self.execute_eval())
         if self.app.tick_state["tick_count"] >= self.app.config.tick_count_limit and self.app.tick_state["start"]:
             return self.error("tick counts over limit")
         next_day = self.next_time()
@@ -373,7 +382,7 @@ class Tick(CommandBase):
             uses.append(use_task)
 
         # chatted
-        chatted = self.app.chatted
+        chatted = self.app.chatted # e.g.{'NPC-10001'}
         print("before solving chatted:", chatted)
         chats = list()
         self.app.chatted = set()
@@ -409,7 +418,7 @@ class Tick(CommandBase):
             init_task = asyncio.create_task(self.solve_init(init))
             inits.append(init_task)
 
-        infos = self.app.cache
+        infos = self.app.cache # to solve agent occupied problem
         print("before solving cache:", infos)
         caches = list()
         self.app.cache = list()

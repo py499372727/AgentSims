@@ -4,7 +4,7 @@ import datetime
 import importlib
 import json
 from agent.actor import Actor
-from config import Config, BuildingConfig, NPCConfig, EquipmentConfig, FrameworkConfig, EconomicConfig
+from config import Config, BuildingConfig, NPCConfig, EquipmentConfig, FrameworkConfig, EconomicConfig, EvalConfig
 from utils import utils
 
 abs_path = os.path.dirname(os.path.realpath(__file__))
@@ -20,6 +20,7 @@ class App:
         self.cache = list()
         # {uid(NPC-xxx): Actor}
         self.actors = dict()
+        self.evals = {}
         self.start_time = self.get_nowtime()
         self.last_real_time = self.get_nowtime()
         self.last_game_time = self.get_nowtime()
@@ -40,6 +41,7 @@ class App:
         self.load_framework_configs(os.path.join(abs_path, 'config', 'framework.json'))
         self.load_equipment_configs(os.path.join(abs_path, 'config', 'equipments.json'))
         self.load_economic_configs(os.path.join(abs_path, 'config', 'economics.json'))
+        self.load_eval_configs(os.path.join(abs_path, 'config', 'eval.json'))
         self.snapshot_path = os.path.join(abs_path, 'snapshot', 'app.json')
         self.load_snapshot()
 
@@ -158,19 +160,20 @@ class App:
         self.log(f"{uid} send: {message}")
         if uid.startswith("Mayor") and "uri" in info and "ping" != info["uri"]:
             mayor_uid = uid
-            uid = mayor_uid.replace("Mayor", "Player")
+            uid = mayor_uid.replace("Mayor", "Player") # mayor mode works as player mode
             info["uid"] = uid
-            info["mayor"] = True
+            info["mayor"] = True # log marker
             print("uid", uid)
             print("mayor_uid:", mayor_uid)
             print(info)
         if "uri" in info and "method" in info:
-            if "ping" == info["uri"]:
+            # "method": 处理服务器请求，此处无用
+            if "ping" == info["uri"]: # ping , for linkage websocket connection
                 ret_data["uid"] = info.get("uid")
                 ret_data["code"] = 200
                 ret_data["data"]["ping"] = True
                 ret_data["msg"] = ""
-            elif info["uri"].startswith("command."):
+            elif info["uri"].startswith("command."): # {'uri': 'command.building.Create', "data": {'uid': , 'building_type': }}
                 # Import module.
                 module = importlib.import_module(info["uri"])
                 # Get class.
@@ -233,6 +236,14 @@ class App:
     
     def get_game_time(self):
         return self.last_game_time
+
+    def load_eval_configs(self, path):
+        self.eval_configs = {}
+        objs = utils.load_json_file(path)
+        # Read data.
+        for obj in objs:
+            config = EvalConfig(obj)
+            self.eval_configs[config.id] = config
 
     def load_building_configs(self, path):
         self.building_configs = {}
