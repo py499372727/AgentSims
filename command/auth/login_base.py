@@ -6,6 +6,8 @@ class LoginBase(CommandBase):
 
     def reg_npc(self, uid, nickname, x, y, asset, bio, goal):
         account_model = self.get_model('NPCRegister')
+        # print(f'!!! when register npc uid: {uid}-{nickname}')
+        print(f'!!! when register database: {account_model.get_db()}')
         id = account_model.find_id(f'{uid}-{nickname}')
         if id <= 0:
             id = account_model.reg_npc(f'{uid}-{nickname}')
@@ -27,7 +29,7 @@ class LoginBase(CommandBase):
         
         # buildings_model = self.get_single_model("Buildings", create=False)
         buildings = ["dessert shop", "gym", "houseZ", "park"]
-        model = "gpt-4"
+        model = "gpt-3.5"
         memorySystem = "LongShortTermMemories"
         planSystem = "QAFramework"
         npc_model.model = model
@@ -42,6 +44,13 @@ class LoginBase(CommandBase):
         self.app.actors[npc_uid] = Actor(nickname, bio, goal, model, memorySystem, planSystem, buildings, 10000, self.app.last_game_time)
         self.app.inited.add(npc_uid)
         return id, npc_model
+
+    def reg_eval(self, uid):
+        for eval_des, eval_cfg in self.app.eval_configs.items():
+            eval_model = self.get_single_model('Eval', id=uid, create=True, eval_cfg=eval_cfg)
+            self.app.evals[eval_des] = eval_model
+        return eval_model
+
 
     # Common login logic.
     def handle_login(self, nickname, uid):
@@ -128,7 +137,8 @@ class LoginBase(CommandBase):
                     if not npc_model:
                         continue
                     npcs_info.append({"uid": f'NPC-{npc["id"]}', "homeBuilding": npc_model.home_building, 'asset': npc_configs.assets.index(npc_model.asset), "assetName": npc_model.asset, 'model': npc_model.model, 'memorySystem': npc_model.memorySystem, 'planSystem': npc_model.planSystem, 'workBuilding': npc_model.work_building, 'nickname': npc_model.name, 'bio': npc_model.bio, 'goal': npc_model.goal, 'cash': npc_model.cash, "x": npc_model.x, "y": npc_model.y})
-        
+
+        # self.reg_eval(uid)
         return buildings_info, npcs_info
 
     def is_check_token(self):

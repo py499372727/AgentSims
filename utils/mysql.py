@@ -1,4 +1,5 @@
 from mysql.connector import pooling, connect, OperationalError, Error, errorcode
+import traceback
 
 
 class Mysql:
@@ -9,11 +10,17 @@ class Mysql:
     def __init__(self, app, host, port, user, pwd, dbname):
         self.app = app
         self.config = self.app.config
+        self.host = host
+        self.port = port
+        self.user = user
+        self.pwd = pwd
+        self.dbname =dbname
 
         self.conn = None
         self.last_errno = None
         self.last_rowid = None
         self.affected_rows = None
+
 
         try:
             key = (host, port, user, pwd, dbname)
@@ -34,6 +41,16 @@ class Mysql:
             self.app.log(f"{err}")
             self.last_errno = err.errno
 
+    def __repr__(self):
+        return  f'''Mysql(
+                        app = {self.app} \n
+                        host = {self.host}\n
+                        port = {self.port}\n
+                        user = {self.user}\n
+                        pwd = {self.pwd}\n
+                        dbname = {self.dbname}\n
+                    )   
+                '''
     def __del__(self):
         self.close()
 
@@ -52,6 +69,7 @@ class Mysql:
         try:
             cursor.execute(query)
         except Error as err:
+            # print(traceback.format_exc())
             if err.errno != errorcode.ER_NO_SUCH_TABLE or not ignore_notable:
                 self.app.log(f"{err}")
             self.last_errno = err.errno
@@ -69,7 +87,7 @@ class Mysql:
         cursor.close()
         return True
 
-    def fetchone(self, query, ignore_notable=False):
+    def fetchone(self, query, ignore_notable=False, func_name='not provided'):
         if self.conn is None:
             return False
 
@@ -77,6 +95,7 @@ class Mysql:
         try:
             cursor.execute(query)
         except Error as err:
+            # print(traceback.format_exc())
             if err.errno != errorcode.ER_NO_SUCH_TABLE or not ignore_notable:
                 self.app.log(f"{err}")
             self.last_errno = err.errno
@@ -95,6 +114,7 @@ class Mysql:
         try:
             cursor.execute(query)
         except Error as err:
+            # print(traceback.format_exc())
             if err.errno != errorcode.ER_NO_SUCH_TABLE or not ignore_notable:
                 self.app.log(f"{err}")
             self.last_errno = err.errno

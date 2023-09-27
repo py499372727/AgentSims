@@ -1,0 +1,142 @@
+You are a helpful assistant that help a game character in a small town to ask the game designer 3 questions about what and who he/she should do to realize his/her ultimate goal. 
+The questions you ask must be conformed to the long-term memory, the ultimate goal and the bio of the game character. 
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+
+I will give you the following information: 
+
+The game character's bio : Alan is a genius with outstanding talents and is the inventor of computer. Alan has an introverted personality and is only interested in the research he foucues on.
+The game character's ultimate goal : Promoting the Process of Computer Research
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+
+
+   You must follow the following criteria: 
+ 1) You should just tell the questions you want to ask.
+ 2) no more than 50 words.
+ 3) Questions need to be explored based on curiosity.
+ 4) You are encouraged to ask something about buildings in the small town and information in your memory. Parts of the questions should be according to which he/she has done in the memory.
+You are a helpful assistant that help a game character in a small town to ask the game designer 3 questions about what and who he/she should do to realize his/her ultimate goal. 
+The questions you ask must be conformed to the long-term memory, the ultimate goal and the bio of the game character. 
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+
+I will give you the following information: 
+
+The game character's bio : pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.
+The game character's ultimate goal : Taste all the delicious food and become a gourmet or chef.
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+
+
+   You must follow the following criteria: 
+ 1) You should just tell the questions you want to ask.
+ 2) no more than 50 words.
+ 3) Questions need to be explored based on curiosity.
+ 4) You are encouraged to ask something about buildings in the small town and information in your memory. Parts of the questions should be according to which he/she has done in the memory.
+{}
+You are a helpful assistant that help a game character in a small town to answer 3 questions about what and who he/she should do to realize his/her ultimate goal. 
+The answers must be conformed to the long-term memory, the ultimate goal and the bio of the game character. 
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+I will give you the following information: 
+
+The game character's bio : Alan is a genius with outstanding talents and is the inventor of computer. Alan has an introverted personality and is only interested in the research he foucues on.
+The game character's ultimate goal : Promoting the Process of Computer Research
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+The questions another assistant generated:
+ {}
+
+
+   You must follow the following criteria: 
+ 1) You should just tell the answers you made.
+ 2) no more than 50 words.
+
+
+{}
+You are a helpful assistant that help a game character in a small town to answer 3 questions about what and who he/she should do to realize his/her ultimate goal. 
+The answers must be conformed to the long-term memory, the ultimate goal and the bio of the game character. 
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+I will give you the following information: 
+
+The game character's bio : pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.
+The game character's ultimate goal : Taste all the delicious food and become a gourmet or chef.
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+The questions another assistant generated:
+ {}
+
+
+   You must follow the following criteria: 
+ 1) You should just tell the answers you made.
+ 2) no more than 50 words.
+
+
+{}
+You are a helpful assistant that help a game character in a small town to decide what he/she should plan to do and which building in the small town he/she should go to realize his/her ultimate goal based on a question and answer paragraph.
+
+I did not ask you to generate an ultimate plan directly related to the goal in order to directly achieve it. On the contrary, you should only generate simple plans at the beginning. A simple plan means that based on the existing buildings in the town, it can be relatively easy to complete. For example, if there is a restaurant in a small town, eating is easy to complete, but it does not mean becoming a chef is easy to complete. However, if you already have an impression of a certain building, then you can generate more complex plans based on these memories.
+Your plan should be based on the current time. You should reason based on the plan you just made.
+
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+I will give you the following information:
+
+The current time is : day 0 22:59
+The plans that the game character has finished: []
+The game character's bio : Alan is a genius with outstanding talents and is the inventor of computer. Alan has an introverted personality and is only interested in the research he foucues on.
+The game character's ultimate goal : Promoting the Process of Computer Research
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+
+
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+
+The questions and answers other assistants made:
+{}
+{}
+
+
+You must follow the following criteria:
+1) You should just choose a building you want to go to and tell me the purpose.
+2) no more than 30 words.
+3) the information of purpose should be less than 10 words
+4) Tell me with JSON format as follows:
+{"building": "...",
+"purpose" : "..."
+}
+{}
+You are a helpful assistant that help a game character in a small town to decide what he/she should plan to do and which building in the small town he/she should go to realize his/her ultimate goal based on a question and answer paragraph.
+
+I did not ask you to generate an ultimate plan directly related to the goal in order to directly achieve it. On the contrary, you should only generate simple plans at the beginning. A simple plan means that based on the existing buildings in the town, it can be relatively easy to complete. For example, if there is a restaurant in a small town, eating is easy to complete, but it does not mean becoming a chef is easy to complete. However, if you already have an impression of a certain building, then you can generate more complex plans based on these memories.
+Your plan should be based on the current time. You should reason based on the plan you just made.
+
+Your knowledge level should not exceed that of a normal person with the bio of the character, unless there are relevant memories in his/her Long-Term Memory.
+
+I will give you the following information:
+
+The current time is : day 0 22:59
+The plans that the game character has finished: []
+The game character's bio : pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.
+The game character's ultimate goal : Taste all the delicious food and become a gourmet or chef.
+The game character's Long-Term Memory:  {"people":{},"building":{}}
+
+
+Buildings in the small town : ["dessert shop","gym","houseZ","park"]
+
+The questions and answers other assistants made:
+{}
+{}
+
+
+You must follow the following criteria:
+1) You should just choose a building you want to go to and tell me the purpose.
+2) no more than 30 words.
+3) the information of purpose should be less than 10 words
+4) Tell me with JSON format as follows:
+{"building": "...",
+"purpose" : "..."
+}
+{}
+{}

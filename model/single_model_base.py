@@ -120,7 +120,7 @@ class SingleModelBase(ModelBase):
 
     def retrieve(self):
         # Only retrieve once.
-        if self.is_retrieved:
+        if self.is_retrieved: # TODO: have retrieved the value no need to retrieve again ?
             return True
 
         db = self.get_db()
