@@ -40,8 +40,9 @@ class Actor:
         """
         ret_dict = {"status": 500, "message": "", "data": dict()}
         if self.using:
-            ret_dict["message"] = "still using"
-            return ret_dict
+            ret_dict["message"] = "still using" # to avoid message overwhelming
+            if observation['source'] != 'chatted':
+                return ret_dict
         self.using = True
         self.agent.state.equipments = observation.get("data", dict()).get("equipments", list())
         self.agent.state.people = observation.get("data", dict()).get("people", list())

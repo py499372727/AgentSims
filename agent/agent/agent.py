@@ -59,7 +59,8 @@ class Agent:
 
     async def use(self, equipment: str, operation: str, description: str, menu: str) -> None:
         # can fail
-        # equipment returns usage infomation
+        # TODO: make use more robust
+        # equipment returns usage information
         self.state.use_prompt = self.prompts.get_text("use", {
             "{bio}": self.bio,
             "{goal}": self.goal,
