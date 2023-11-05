@@ -5,7 +5,7 @@ import re
 from agent.utils.llmExpends.BasicCaller import BasicCaller
 from agent.utils.llmExpends.gpt4 import GPT4Caller
 from agent.utils.llmExpends.gpt35 import GPT35Caller
-
+# TODO: make the LLMCaller more general
 choices = {
     'gpt-4': GPT4Caller,
     'gpt-3.5': GPT35Caller

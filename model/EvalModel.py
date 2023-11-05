@@ -20,33 +20,32 @@ class EvalModel(ModelBase):
 
     def retrieve(self):
         return True # placeholder, to fit the process in Tick.get_single_model
-    def ask (self, *args, **kwargs):
+    async def ask (self, *args, **kwargs):
     #  ask questions to a specific npc
-        # target_npc_id = self.find_id(f'{self.player_id}-{self.target_nickname}')
-        # print(f'!!! when retrieve database: {self.get_db()}')
-        # print(f'!!! when retrieve npc uid: {self.player_id}-{self.target_nickname}')
         for npc_id, actor in self.app.actors.items():
             if actor.agent.name == self.target_nickname:
                 target_npc_id = npc_id
                 # target_npc = self.app.actors[target_npc_id]
-                repsonse = actor.agent.caller.ask(self.query)
-                return repsonse
+                response = await actor.agent.caller.ask(self.query)
+                return response
         
         return f"eval target {self.target_nickname} not found"
 
 
-    def eval(self, response):
+    async def eval(self, response):
         try:
             eval_fct = eval(f'lambda response: {self.measure}')
             eval_result = eval_fct(response)
             return eval_result
         except Exception as e:
-            print(f"Error {e} occurred when using the custom eval function\n: {self.measure} ")
+            print(f"Error: {e} \n occurred when using the custom eval function\n: {self.measure} \n to response {response}")
             return e
 
-    def __call__(self, *args, **kwargs):
-        response = self.ask()
-        return self.eval(response)
+    async def __call__(self, *args, **kwargs):
+        response = await self.ask()
+        response = response['response']
+        assert type(response) is str, f'response should be a string, current response is {response}'
+        return self.eval(response), response
 
     def __repr__(self):
         return f'''

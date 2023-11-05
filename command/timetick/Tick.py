@@ -126,7 +126,12 @@ class Tick(CommandBase):
                 "game_time": self.app.last_game_time,
             }}
             result = await self.app.actors[target_actor_id].react(info)
-            content = result["data"]['chat']['content']
+            try:
+                content = result["data"]['chat']['content']
+            except KeyError:
+                if 'content' not in self.app.actors[target_actor_id].agent.state.chat:
+                    __import__('remote_pdb').set_trace()
+                content = self.app.actors[target_actor_id].agent.state.chat
             target_model_loop.add_chat(source_actor_id, content, False)
             source_model_loop.add_chat(target_actor_id, content)
             chats.append({"speaker": target_model_loop.name, "content": content})
@@ -150,7 +155,10 @@ class Tick(CommandBase):
         print("uid:", uid,"result:", json.dumps(result, ensure_ascii=False, separators=(",", ":")))
         self.app.send(f"Player-{map_id}", {"code": 200, "uri": "NPC-React", "uid": uid, "data": {"uid": uid, "reaction": result}})
         if "newPlan" in result["data"]:
-            entity_model.plan = result["data"]["newPlan"]["purpose"]
+            try:
+                entity_model.plan = result["data"]["newPlan"]["purpose"]
+            except:
+                __import__('remote_pdb').set_trace()
             self.app.send(f"Player-{map_id}", {"code": 200, "uri": "newPlan", "uid": uid, "data": {"uid": uid, "plan": result["data"]["newPlan"]["purpose"]}})
             entity_model.save()
             location = result['prompts']['plan']['building']
@@ -262,7 +270,11 @@ class Tick(CommandBase):
         if result["status"] == 500:
             pass# self.app.cache.append({"uid": uid, "info": info})
         else:
+            if result['data'] is None:
+                __import__('remote_pdb').set_trace()
+                result['date'] = self.app.actors[uid].agent.state.critic
             await self.parse_react(result, entity_model, map_id, map_model, uid)
+
         return 1
 
     async def solve_moving(self, moving):
@@ -357,18 +369,20 @@ class Tick(CommandBase):
         return counter
 
     async def execute_eval(self):
-        # print(f'len of evals is {len(self.app.evals)}')
         current_tick = self.app.tick_state["tick_count"]
         for eval_name, eval_module in self.app.evals.items():
-            if  current_tick % eval_module.interval == 0: 
-                print(f'{eval_name}: {eval_module()}')
-                with open('logs/eval_results','a+') as f:
-                    f.write(f'tick {current_tick}: {eval_name}: {eval_module()}')
+            if  current_tick % eval_module.interval == 0:
+                eval_res, response = await eval_module()
+                eval_res = await eval_res
+                response = await response
+                print(f'{eval_name}: {eval_res}')
+                with open('logs/eval_results.txt','a+') as f:
+                    f.write(f'tick {current_tick}: {eval_name}: {eval_res}\n, response: {response} \n')
                     
 
     async def execute(self, params):
         # update timetick
-        if self.app.tick_state["start"]: # (self.app.tick_state["tick_count"] % self.app.config.eval_interval_tick) == 0 
+        if self.app.tick_state["start"]:
             asyncio.create_task(self.execute_eval())
         if self.app.tick_state["tick_count"] >= self.app.config.tick_count_limit and self.app.tick_state["start"]:
             return self.error("tick counts over limit")

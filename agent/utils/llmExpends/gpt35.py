@@ -1,6 +1,7 @@
 from typing import List, Dict, Any
 import os
 import json
+import traceback
 import openai_async as openai
 from agent.utils.llmExpends.BasicCaller import BasicCaller
 
@@ -23,12 +24,20 @@ class GPT35Caller(BasicCaller):
             try:
                 request_body = {
                     "model": self.model,
-                    "messages": [{"role": "user", "content": prompt}]
+                    "messages": [{"role": "user", "content": prompt}],
+                    'temperature' : 0
                 }
                 response = await openai.chat_complete(self.api_key, 50, request_body)
                 result = response.json()["choices"][0]["message"]["content"]
-                break
+                return result
             except Exception as e:
                 print(e)
                 counter += 1
-        return result
+
+        try:
+            traceback.print_exc()
+            print(response.json())
+        except:
+            pass
+        __import__('remote_pdb').set_trace()
+

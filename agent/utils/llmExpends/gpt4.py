@@ -23,7 +23,8 @@ class GPT4Caller(BasicCaller):
             try:
                 request_body = {
                     "model": self.model,
-                    "messages": [{"role": "user", "content": prompt}]
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0
                 }
                 response = await openai.chat_complete(self.api_key, 50, request_body)
                 print(response.text)

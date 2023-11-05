@@ -97,7 +97,7 @@ You can create agents and buildings at this point. For creation, please refer to
 ## 7.Set Evaluation Target and Measurements
 In AgentSims, evaluation are made by QA forms. Every k ticks, system would ask the subject agent an evaluation question. You can customize your subject agent, evaluation question, measurement of response in config/eval.json 
 The example in config/eval.json shows an experiment called 'know pH'. The experiment will ask agent Alan 'Are you acquainted with pH' every 1 tick and if 'Yes' in response, the eval function will return True.
-'''
+```
 {
   "id": "know pH", # the human-readable name of evaluation, 
   "target_nickname": "Alan", # name of the subject agent
@@ -106,7 +106,7 @@ The example in config/eval.json shows an experiment called 'know pH'. The experi
   "interval": 1 # Evaluate every 1 tick
 }
 
-'''
+```
 
 ## 8.Run Simulation
 
