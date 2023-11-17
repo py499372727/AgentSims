@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "ice_cream_1",
+    "price": "50",
+    "belongUid": 1,
+    "transaction_records": []
+  }
+]

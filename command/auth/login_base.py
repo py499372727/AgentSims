@@ -6,8 +6,6 @@ class LoginBase(CommandBase):
 
     def reg_npc(self, uid, nickname, x, y, asset, bio, goal):
         account_model = self.get_model('NPCRegister')
-        # print(f'!!! when register npc uid: {uid}-{nickname}')
-        # print(f'!!! when register database: {account_model.get_db()}')
         id = account_model.find_id(f'{uid}-{nickname}')
         if id <= 0:
             id = account_model.reg_npc(f'{uid}-{nickname}')
@@ -29,7 +27,7 @@ class LoginBase(CommandBase):
         
         # buildings_model = self.get_single_model("Buildings", create=False)
         buildings = ["dessert shop", "gym", "houseZ", "park"]
-        model = "gpt-3.5"
+        model = "gpt-4"
         memorySystem = "LongShortTermMemories"
         planSystem = "QAFramework"
         npc_model.model = model
@@ -45,13 +43,6 @@ class LoginBase(CommandBase):
         self.app.inited.add(npc_uid)
         return id, npc_model
 
-    def reg_eval(self, uid):
-        for eval_des, eval_cfg in self.app.eval_configs.items():
-            eval_model = self.get_single_model('Eval', id=uid, create=True, eval_cfg=eval_cfg)
-            self.app.evals[eval_des] = eval_model
-        return eval_model
-
-
     # Common login logic.
     def handle_login(self, nickname, uid):
         buildings_info = []
@@ -63,7 +54,9 @@ class LoginBase(CommandBase):
         if player_model is None:
             print(uid, "first login")
             alan, alan_model = self.reg_npc(uid, "Alan", 50, 71, "premade_01", "Alan is a genius with outstanding talents and is the inventor of computer. Alan has an introverted personality and is only interested in the research he foucues on.", "Promoting the Process of Computer Research")
-            fei, fei_model = self.reg_npc(uid, "pH", 52, 73, "premade_04", "pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.", "Taste all the delicious food and become a gourmet or chef.")
+            fei, fei_model = self.reg_npc(uid, "pH", 52, 73, "premade_04", "pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.", "Find a dessert shop. Buy ice cream from a dessert shop and sell it to the counter at the price of 30")
+            # fei, fei_model = self.reg_npc(uid, "pH", 52, 73, "premade_04", "pH is a positive, cheerful, optimistic but somewhat crazy girl who dares to try and explore. She loves food, loves life, and hopes to bring happiness to everyone.", "Buy and Taste all the delicious food and become a gourmet or chef.")
+
             models = [
                 'Player',
                 'Map',
@@ -71,6 +64,7 @@ class LoginBase(CommandBase):
                 'Buildings',
                 'Equipments',
                 'NPCs',
+                'TradeItem'
             ]
             for model_name in models:
                 model = self.get_single_model(model_name)
@@ -92,11 +86,11 @@ class LoginBase(CommandBase):
                 model.init()
                 if model_name == "Player":
                     model.name = nickname
-                    model.x = 71
-                    model.y = 41
+                    model.x = 53
+                    model.y = 76
                 if model_name == "Map":
                     model.init_map()
-                    model.add_uid(71, 41, uid, nickname)
+                    model.add_uid(53, 76, uid, nickname)
                     model.add_uid(50, 71, f"NPC-{alan}", "Alan")
                     model.add_uid(52, 73, f"NPC-{fei}", "Fei")
                 if model_name == "Buildings":
@@ -119,6 +113,8 @@ class LoginBase(CommandBase):
                     #         continue
                     npcs_info.append({"uid": f"NPC-{alan}", "homeBuilding": alan_model.home_building, 'asset': npc_configs.assets.index(alan_model.asset), "assetName": alan_model.asset, 'model': alan_model.model, 'memorySystem': alan_model.memorySystem, 'planSystem': alan_model.planSystem, 'workBuilding': alan_model.work_building, 'nickname': alan_model.name, 'bio': alan_model.bio, 'goal': alan_model.goal, 'cash': alan_model.cash, "x": alan_model.x, "y": alan_model.y})
                     npcs_info.append({"uid": f"NPC-{fei}", "homeBuilding": fei_model.home_building, 'asset': npc_configs.assets.index(fei_model.asset), "assetName": fei_model.asset, 'model': fei_model.model, 'memorySystem': fei_model.memorySystem, 'planSystem': fei_model.planSystem, 'workBuilding': fei_model.work_building, 'nickname': fei_model.name, 'bio': fei_model.bio, 'goal': fei_model.goal, 'cash': fei_model.cash, "x": fei_model.x, "y": fei_model.y})
+                if model_name == 'TradeItem':
+                    self.app.trade_model = model
                 model.save()
         else:
             print(uid, "login")
@@ -137,8 +133,7 @@ class LoginBase(CommandBase):
                     if not npc_model:
                         continue
                     npcs_info.append({"uid": f'NPC-{npc["id"]}', "homeBuilding": npc_model.home_building, 'asset': npc_configs.assets.index(npc_model.asset), "assetName": npc_model.asset, 'model': npc_model.model, 'memorySystem': npc_model.memorySystem, 'planSystem': npc_model.planSystem, 'workBuilding': npc_model.work_building, 'nickname': npc_model.name, 'bio': npc_model.bio, 'goal': npc_model.goal, 'cash': npc_model.cash, "x": npc_model.x, "y": npc_model.y})
-
-        self.reg_eval(uid)
+        
         return buildings_info, npcs_info
 
     def is_check_token(self):

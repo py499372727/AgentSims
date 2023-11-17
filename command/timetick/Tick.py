@@ -3,11 +3,13 @@ from typing import List, Dict, Any
 import json
 import asyncio
 
+
 class Tick(CommandBase):
     """time tick."""
+
     def is_check_token(self):
         return False
-    
+
     def next_time(self) -> bool:
         new_real_time = self.get_nowtime()
         new_game_time = self.app.last_game_time + (new_real_time - self.app.last_real_time) * 60
@@ -17,17 +19,17 @@ class Tick(CommandBase):
         self.app.last_game_time = new_game_time
         self.app.last_real_time = new_real_time
         return next_day
-    
+
     def get_entity_model(self, uid: str):
-        entity_type = uid.partition("-")[0]
-        entity_id = int(uid.partition("-")[2]) #TODO, why not use split ?
+        entity_type = uid.partition("-")[0] # NPC or Player
+        entity_id = int(uid.partition("-")[2])
         entity_model = self.get_single_model(entity_type, entity_id, create=False)
         map_id = entity_id
         if entity_type == "NPC" and entity_model:
             map_id = entity_model.map
         map_model = self.get_single_model("Map", map_id, create=False)
         return entity_type, entity_id, entity_model, map_id, map_model
-    
+
     async def move(self, entity_model, map_id, map_model, entity_type, uid) -> int:
         path = entity_model.path
         print("uid:", uid, "path:", path)
@@ -83,13 +85,16 @@ class Tick(CommandBase):
                 "cash": entity_model.cash,
                 "game_time": self.app.last_game_time,
             }}
+            self.addItemsInParam(info, uid, map_id)
             result = await self.app.actors[uid].react(info)
             if result["status"] == 500:
                 pass# self.app.cache.append({"uid": uid, "info": info})
             else:
+                if result['data'] is None:
+                    __import__('remote_pdb').set_trace()
                 await self.parse_react(result, entity_model, map_id, map_model, uid)
             return 0
-    
+
     async def _execute_chat(self, map_id, map_model, uid, entity_model, tuid, target_model, chats, topic=""):
         source_sight = map_model.search_sight(entity_model.x, entity_model.y)
         target = target_model.name
@@ -126,12 +131,7 @@ class Tick(CommandBase):
                 "game_time": self.app.last_game_time,
             }}
             result = await self.app.actors[target_actor_id].react(info)
-            try:
-                content = result["data"]['chat']['content']
-            except KeyError:
-                if 'content' not in self.app.actors[target_actor_id].agent.state.chat:
-                    __import__('remote_pdb').set_trace()
-                content = self.app.actors[target_actor_id].agent.state.chat
+            content = result["data"]['chat']['content']
             target_model_loop.add_chat(source_actor_id, content, False)
             source_model_loop.add_chat(target_actor_id, content)
             chats.append({"speaker": target_model_loop.name, "content": content})
@@ -155,10 +155,7 @@ class Tick(CommandBase):
         print("uid:", uid,"result:", json.dumps(result, ensure_ascii=False, separators=(",", ":")))
         self.app.send(f"Player-{map_id}", {"code": 200, "uri": "NPC-React", "uid": uid, "data": {"uid": uid, "reaction": result}})
         if "newPlan" in result["data"]:
-            try:
-                entity_model.plan = result["data"]["newPlan"]["purpose"]
-            except:
-                __import__('remote_pdb').set_trace()
+            entity_model.plan = result["data"]["newPlan"]["purpose"]
             self.app.send(f"Player-{map_id}", {"code": 200, "uri": "newPlan", "uid": uid, "data": {"uid": uid, "plan": result["data"]["newPlan"]["purpose"]}})
             entity_model.save()
             location = result['prompts']['plan']['building']
@@ -255,26 +252,57 @@ class Tick(CommandBase):
             entity_model.act_timeout = self.app.last_game_time + continue_time * 1000
             entity_model.save()
             if equipment_id:
-                self.app.send(f"Player-{map_id}", {"code": 200, "uri": "interact", "uid": uid, "data": {"uid": uid, "equipment": equipment_id, "operation": operation, "continueTime": continue_time, "cost": cost, "earn": earn}})
+                self.app.send(f"Player-{map_id}", {"code": 200, "uri": "interact", "uid": uid,
+                                                   "data": {"uid": uid, "equipment": equipment_id,
+                                                            "operation": operation, "continueTime": continue_time,
+                                                            "cost": cost, "earn": earn}})
+
+            # 解析交易行为
+            if 'trade' in result['data']:
+                trade_model = self.app.trade_model
+                tradeResult = result['data']['trade']
+                assert  all([ key in tradeResult for key in [ 'actionType', 'price', 'itemid']]),\
+                    f' essential key missing, current tradeResult: {tradeResult}'
+                if  'giveup' not in  tradeResult["actionType"].lower() :  # TODO: do not reply on str judgement
+                    currentAgent = self.app.actors[uid].agent
+                    # __import__('remote_pdb').set_trace()
+                    if tradeResult["actionType"] == "buy":
+                        # 减去金钱
+                        cash_after_opt = currentAgent.state.cash - tradeResult["price"]
+                        assert  currentAgent.state.cash > 0, f'the currency is not enough, item price:{tradeResult["price"]}'
+                        currentAgent.state.cash = cash_after_opt
+
+                        trade_model.exchangeTradeItem(equipment_id, uid, equipment, currentAgent.name,
+                                                      tradeResult["itemid"], tradeResult["actionType"])
+                        # 获取寄卖人的uid
+                        consignmentSaleUid = trade_model.getConsignmentSaleUidBYItemId(int(tradeResult["itemid"]))
+                        # 给寄卖人加钱
+                        if consignmentSaleUid:
+                            self.app.actors[consignmentSaleUid].agent.state.cash = \
+                                self.app.actors[consignmentSaleUid].agent.state.cash + tradeResult["price"]
+                    elif tradeResult["actionType"] == "sell":
+                        trade_model.exchangeTradeItem(uid, equipment_id, currentAgent.name, equipment,
+                                                      tradeResult["itemid"],
+                                                      tradeResult["actionType"])
+
             self.app.using.add(uid)
 
     async def finish_using(self, entity_model, map_id, map_model, uid) -> int:
         sight = map_model.search_sight(entity_model.x, entity_model.y)
+
         info = {"source": "timetick-finishUse", "data": {
             "people": sight["people"],
             "equipments": sight["equipments"],
             "cash": entity_model.cash,
             "game_time": self.app.last_game_time,
+            "uid": uid,
         }}
+        self.addItemsInParam(info, uid, map_id)
         result = await self.app.actors[uid].react(info)
         if result["status"] == 500:
             pass# self.app.cache.append({"uid": uid, "info": info})
         else:
-            if result['data'] is None:
-                __import__('remote_pdb').set_trace()
-                result['date'] = self.app.actors[uid].agent.state.critic
             await self.parse_react(result, entity_model, map_id, map_model, uid)
-
         return 1
 
     async def solve_moving(self, moving):
@@ -293,7 +321,7 @@ class Tick(CommandBase):
         if move_result:
             counter = 1
         return counter
-    
+
     async def solve_use(self, use):
         counter = 0
         entity_type, entity_id, entity_model, map_id, map_model = self.get_entity_model(use)
@@ -305,10 +333,9 @@ class Tick(CommandBase):
         if use_result:
             counter += 1
         return counter
-    
+
     async def solve_chat(self, chat):
         # finished chatting
-        # chat is uid?
         counter = 0
         entity_type, entity_id, entity_model, map_id, map_model = self.get_entity_model(chat)
         if not entity_model:
@@ -322,17 +349,18 @@ class Tick(CommandBase):
             "cash": entity_model.cash,
             "game_time": self.app.last_game_time,
         }}
+        self.addItemsInParam(info, chat, map_id)
         entity_model.new_chats = list()
         entity_model.save()
         entity_model.flush()
         result = await self.app.actors[chat].react(info)
         if result["status"] == 500:
-            pass# self.app.cache.append({"uid": chat, "info": info})
+            pass  # self.app.cache.append({"uid": chat, "info": info})
         else:
             await self.parse_react(result, entity_model, map_id, map_model, chat)
             counter += 1
         return counter
-    
+
     async def solve_init(self, init):
         counter = 0
         entity_type, entity_id, entity_model, map_id, map_model = self.get_entity_model(init)
@@ -347,14 +375,15 @@ class Tick(CommandBase):
             "cash": entity_model.cash,
             "game_time": self.app.last_game_time,
         }}
+        self.addItemsInParam(info, init, map_id)
         result = await self.app.actors[init].react(info)
         if result["status"] == 500:
-            pass# self.app.cache.append({"uid": init, "info": info})
+            pass  # self.app.cache.append({"uid": init, "info": info})
         else:
             await self.parse_react(result, entity_model, map_id, map_model, init)
             counter += 1
         return counter
-    
+
     async def solve_cache(self, info):
         counter = 0
         entity_type, entity_id, entity_model, map_id, map_model = self.get_entity_model(info['uid'])
@@ -368,22 +397,8 @@ class Tick(CommandBase):
             counter += 1
         return counter
 
-    async def execute_eval(self):
-        current_tick = self.app.tick_state["tick_count"]
-        for eval_name, eval_module in self.app.evals.items():
-            if  current_tick % eval_module.interval == 0:
-                eval_res, response = await eval_module()
-                eval_res = await eval_res
-                response = await response
-                print(f'{eval_name}: {eval_res}')
-                with open('logs/eval_results.txt','a+') as f:
-                    f.write(f'tick {current_tick}: {eval_name}: {eval_res}\n, response: {response} \n')
-                    
-
     async def execute(self, params):
         # update timetick
-        if self.app.tick_state["start"]:
-            asyncio.create_task(self.execute_eval())
         if self.app.tick_state["tick_count"] >= self.app.config.tick_count_limit and self.app.tick_state["start"]:
             return self.error("tick counts over limit")
         next_day = self.next_time()
@@ -400,14 +415,14 @@ class Tick(CommandBase):
             uses.append(use_task)
 
         # chatted
-        chatted = self.app.chatted # e.g.{'NPC-10001'}
+        chatted = self.app.chatted
         print("before solving chatted:", chatted)
         chats = list()
         self.app.chatted = set()
         for chat in chatted:
             chat_task = asyncio.create_task(self.solve_chat(chat))
             chats.append(chat_task)
-        
+
         # if next_day:
         #     for uid, actor in self.app.actors:
         #         info = {"source": "timetick-storeMemory", "data": {
@@ -426,7 +441,7 @@ class Tick(CommandBase):
         for moving in movings:
             move_task = asyncio.create_task(self.solve_moving(moving))
             moves.append(move_task)
-        
+
         # inited
         inited = self.app.inited
         print("before solving inited:", inited)
@@ -436,7 +451,7 @@ class Tick(CommandBase):
             init_task = asyncio.create_task(self.solve_init(init))
             inits.append(init_task)
 
-        infos = self.app.cache # to solve agent occupied problem
+        infos = self.app.cache
         print("before solving cache:", infos)
         caches = list()
         self.app.cache = list()
@@ -454,7 +469,7 @@ class Tick(CommandBase):
             counter["inited"] += await init
         for cache in caches:
             counter["cache"] += await cache
-        
+
         if counter["moving"] or counter["chatted"] or counter["using"] or counter["inited"] or counter["cache"]:
             self.app.tick_state["tick_count"] += 1
 
@@ -465,3 +480,11 @@ class Tick(CommandBase):
         print("chatted:", self.app.chatted)
 
         return counter
+
+    # 参数里添加物品
+    def addItemsInParam(self, info, uid, map_id):
+        trade_model = self.app.trade_sys
+        # todo trade 单靠id会有漏洞，加多个物品类型？
+        info["data"]["npc_items"] = trade_model.getAllTradeItemByUid(uid) # items owned by npc
+        # todo trade 这里其实只要加载所有关于属于equipmet的物品就行了
+        info["data"]["all_trade_items"] = trade_model.getAllTradeItems()

@@ -2,6 +2,8 @@
 
 # Remove the app.json file
 rm -rf snapshot/app.json
+rm -rf logs/*
+ps -a | grep main.py | awk '{print $1}' | xargs -I{} kill -9 {}
 
 # MySQL commands
 mysql <<EOF

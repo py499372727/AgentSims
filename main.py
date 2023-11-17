@@ -9,7 +9,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     app_cache = App()
     ping_interval = 0
 
-    def check_origin(self,remote_address):
+    def check_origin(self, remote_addr):
         # CORS
         return True
 

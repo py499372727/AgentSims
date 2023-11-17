@@ -9,6 +9,8 @@ The plan is : {plan}
 The game character's bio : {bio}
 The game character's ultimate goal : {goal}
 The game character's Long-Term Memory:  {memory}
+The game character's Life Experience set:  {experience}
+There are these items in the game character's bag: {npc_items}
 Equipments around the character : {equipments}
 Other chatacters around the character : {people}
 Acts finished in this loop : {act_cache}
@@ -16,8 +18,8 @@ Acts finished in this loop : {act_cache}
 If there are some acts finished  in this loop, you can only decide to use an equipment.
 If there are not any acts finished  in this loop, you can decide to use the experience, use an equipment or chat with some one.
 
-If you decide to use the experience in the Long-Term Memory, You must follow the following criteria: 
- 1) You should just choose the experience to use and tell me in JSON format .
+You must follow the following criteria:
+ 1) If your life experience is not empty and you decide to use one of experience, choose an experienceID in Life Experience set. Return in JSON format .
 {"action":"experience",
 "experienceID":"..."
 }
@@ -33,8 +35,8 @@ If you decide to use the experience in the Long-Term Memory, You must follow the
 "equipment" : "...",
 "operation" : "..."
 }
-
-If you decide to chat with someone, tell me with JSON format as follows: (who you want to talk with in "target", what you want to talk about in "topic")
+It should be noted that the counter is the place responsible for trading goods. If you want to buy or sell something, choose the counter equipment, then select the buy or sell operation. If so, you can tell me buy XXX or sell XX.
+ 6)If you decide to chat with someone, tell me with JSON format as follows: (who you want to talk with in "target", what you want to talk about in "topic")
 {"action": "chat",
 "person" : "...",
 "topic" : "..."

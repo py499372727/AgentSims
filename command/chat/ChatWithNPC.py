@@ -1,5 +1,6 @@
 from command.command_base import CommandBase
 import asyncio
+import random
 
 
 class ChatWithNPC(CommandBase):
@@ -43,9 +44,24 @@ class ChatWithNPC(CommandBase):
         response = result["data"]['chat']['content']
         player_model.add_chat(NPC_id, response, False)
         npc_model.add_chat(player_id, response)
-        self.app.send(player_id, {"code": 200, "uri": "chatWith", "uid": NPC_id,
-                                  "data": {"sourceID": NPC_id, "targetID": player_id,
-                                           "content": response.partition(": ")[2]}})
+
+        # 如果对话中包换中央小镇的相关信息 todo center town info 参数是否要考虑在内
+        cenTerAgentName = self.checkCenterTownAgentName(result)
+        if "center town" in result or cenTerAgentName:
+            if not cenTerAgentName:
+                cenTerAgentName = self.getCenterTownAgentNamnRangdom()
+            self.app.send(player_id, {"code": 200, "uri": "chatWith", "uid": NPC_id,
+                                      "data": {"sourceID": NPC_id,
+                                               "targetID": player_id,
+                                               "content": response.partition(": ")[2],
+                                               "goToCenterTown": True,
+                                               "cenTerAgentName": cenTerAgentName
+                                               # todo center town 是否要把人物的坐标输入在内？
+                                               }})
+        else:
+            self.app.send(player_id, {"code": 200, "uri": "chatWith", "uid": NPC_id,
+                                      "data": {"sourceID": NPC_id, "targetID": player_id,
+                                               "content": response.partition(": ")[2]}})
         # self.app.chatted.add(NPC_id)
         # if NPC_id in self.app.inited:
         #     self.app.inited.remove(NPC_id)
@@ -60,3 +76,18 @@ class ChatWithNPC(CommandBase):
 
         # Return nonce and sign message.
         return {'npc': npc_model.as_object(False), 'player': player_model.as_object(False)}
+
+    # 检查结果里是否包含小镇里的人物
+    def checkCenterTownAgentName(self, result):
+        # todo center town 8个agent的人名
+        centralTown = list()
+        for agentName in centralTown:
+            if agentName in result:
+                return agentName
+        return None
+
+    # 随机获取中央小镇里的一个人物
+    def getCenterTownAgentNamnRangdom(self):
+        # todo center town 8个agent的人名
+        centralTown = list()
+        return random.choice(centralTown)

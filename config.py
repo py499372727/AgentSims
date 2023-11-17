@@ -20,8 +20,6 @@ class Config:
             obj, "mayor_cooldown", 3600000)
         self.mayor_count_limit = utils.get_json_value(
             obj, "mayor_count_limit", 5)
-        self.eval_interval_tick = utils.get_json_value(
-            obj, "eval_interval_tick", 1)
 
         # Database parameters.
         # User count for each game database.
@@ -105,17 +103,6 @@ class Config:
     def get_db_name(self, key):
         return getattr(self, f"db_{key}_name")
 
-class EvalConfig:
-    def __init__(self, obj):
-        self.id = obj['id']
-        self.target_nickname = obj['target_nickname']
-        self.query = obj['query']
-        self.measurement = obj['measurement']
-        self.eval_interval = obj['interval']
-    def to_json(self):
-        return vars(self)
-
-
 class BuildingConfig:
     def __init__(self, obj):
         self.id = obj["id"]
@@ -129,7 +116,7 @@ class BuildingConfig:
         self.equipments = utils.get_json_value(obj, "equipments", [[0]])
     
     def to_json(self):
-        return { #TODO var() can serve as the to_dict
+        return {
             "id": self.id,
             "type": self.type,
             "price": self.price,

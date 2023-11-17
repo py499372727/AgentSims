@@ -12,6 +12,7 @@ The plans that the game character has finished: {plan_cache}
 The game character's bio : {bio}
 The game character's ultimate goal : {goal}
 The game character's Long-Term Memory:  {memory}
+There are these items in the game character's bag: {npc_items}
 
 
 Buildings in the small town : {buildings}

@@ -12,6 +12,7 @@ class Prompts:
             "chat": Prompt("chat"),
             "critic": Prompt("critic"),
             "memory_store": Prompt("memory_store"),
+            "trade": Prompt('trade'),
         }
     
     def get_text(self, part: str, params: Dict[str, Any]) -> str:

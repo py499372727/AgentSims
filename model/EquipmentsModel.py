@@ -30,6 +30,8 @@ class EquipmentsModel(SingleModelBase):
         # ORM mapping.
         self.orm['equipments'] = SingleModelBase.OBJECT
 
+        self.tradeItem = []
+
     def init(self):
         self.equipments = list()
 

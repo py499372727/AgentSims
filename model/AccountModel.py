@@ -30,8 +30,7 @@ class AccountModel(ModelBase):
                 continue
 
             nameid = pair.split('=')
-            # Found.query = f"SHOW TABLES"
-            #         row = db.fetchone(query, True)
+            # Found.
             if nameid[0] == user:
                 id = nameid[1]
                 break

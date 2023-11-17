@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "online": false,
   "tick_cooldown": 30000,
-  "tick_count_limit": 5,
+  "tick_count_limit": 3,
   "mayor_cooldown": 30000,
   "mayor_count_limit": 5,
   "db_user_per_db": 500000,

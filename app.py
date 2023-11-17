@@ -4,8 +4,9 @@ import datetime
 import importlib
 import json
 from agent.actor import Actor
-from config import Config, BuildingConfig, NPCConfig, EquipmentConfig, FrameworkConfig, EconomicConfig, EvalConfig
+from config import Config, BuildingConfig, NPCConfig, EquipmentConfig, FrameworkConfig, EconomicConfig
 from utils import utils
+from model.TradeItemModel import  TradeItemModel
 
 abs_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -20,7 +21,7 @@ class App:
         self.cache = list()
         # {uid(NPC-xxx): Actor}
         self.actors = dict()
-        self.evals = {}
+        self.trade_model: TradeItemModel = None
         self.start_time = self.get_nowtime()
         self.last_real_time = self.get_nowtime()
         self.last_game_time = self.get_nowtime()
@@ -41,9 +42,14 @@ class App:
         self.load_framework_configs(os.path.join(abs_path, 'config', 'framework.json'))
         self.load_equipment_configs(os.path.join(abs_path, 'config', 'equipments.json'))
         self.load_economic_configs(os.path.join(abs_path, 'config', 'economics.json'))
-        self.load_eval_configs(os.path.join(abs_path, 'config', 'eval.json'))
+        self.load_item_configs(os.path.join(abs_path, 'config', 'items.json'))
         self.snapshot_path = os.path.join(abs_path, 'snapshot', 'app.json')
         self.load_snapshot()
+
+    @property
+    def trade_sys(self):
+        assert self.trade_model is not None, "trade model haven't inited yet, which is inited in login_base."
+        return  self.trade_model
 
     def load_snapshot(self):
         if os.path.exists(self.snapshot_path):
@@ -160,20 +166,19 @@ class App:
         self.log(f"{uid} send: {message}")
         if uid.startswith("Mayor") and "uri" in info and "ping" != info["uri"]:
             mayor_uid = uid
-            uid = mayor_uid.replace("Mayor", "Player") # mayor mode works as player mode
+            uid = mayor_uid.replace("Mayor", "Player")
             info["uid"] = uid
-            info["mayor"] = True # log marker
+            info["mayor"] = True
             print("uid", uid)
             print("mayor_uid:", mayor_uid)
             print(info)
         if "uri" in info and "method" in info:
-            # "method": 处理服务器请求，此处无用
-            if "ping" == info["uri"]: # ping , for linkage websocket connection
+            if "ping" == info["uri"]:
                 ret_data["uid"] = info.get("uid")
                 ret_data["code"] = 200
                 ret_data["data"]["ping"] = True
                 ret_data["msg"] = ""
-            elif info["uri"].startswith("command."): # {'uri': 'command.building.Create', "data": {'uid': , 'building_type': }}
+            elif info["uri"].startswith("command."):
                 # Import module.
                 module = importlib.import_module(info["uri"])
                 # Get class.
@@ -237,14 +242,6 @@ class App:
     def get_game_time(self):
         return self.last_game_time
 
-    def load_eval_configs(self, path):
-        self.eval_configs = {}
-        objs = utils.load_json_file(path)
-        # Read data.
-        for obj in objs:
-            config = EvalConfig(obj)
-            self.eval_configs[config.id] = config
-
     def load_building_configs(self, path):
         self.building_configs = {}
         # Load json file.
@@ -268,7 +265,16 @@ class App:
 
     def get_equipment_config(self, id):
         return self.equipment_configs[id]
-    
+
+    def load_item_configs(self, path):
+        self.item_configs = {}
+        # Load json file.
+        objs = utils.load_json_file(path)
+        # Read data.
+        for obj in objs:
+            config = obj # dict TODO: define a class
+            self.item_configs[config['id']] = config
+
     def load_economic_configs(self, path):
         self.economic_configs = {}
         # Load json file.

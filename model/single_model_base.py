@@ -5,7 +5,7 @@ from model.model_base import ModelBase
 
 
 class SingleModelBase(ModelBase):
-
+    # A model need database operations
     # DB data type definition.
     BOOL = 'bool'       # TINYINT
     INT = 'int'         # INT
@@ -119,8 +119,9 @@ class SingleModelBase(ModelBase):
         return True
 
     def retrieve(self):
+        # retrieve from database
         # Only retrieve once.
-        if self.is_retrieved: # TODO: have retrieved the value no need to retrieve again ?
+        if self.is_retrieved:
             return True
 
         db = self.get_db()

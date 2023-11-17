@@ -34,6 +34,7 @@ class PlayerModel(SingleModelBase):
         self.orm['path'] = SingleModelBase.OBJECT
         self.orm['last_move'] = SingleModelBase.TIME
         self.orm['chats'] = SingleModelBase.OBJECT
+        self.artistic = []
 
     def init(self):
         self.name = ''

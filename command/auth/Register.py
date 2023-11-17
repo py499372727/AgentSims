@@ -15,6 +15,7 @@ class Register(LoginBase):
         # Check params.
         if not self.check_params(params, ['nickname', 'email', 'cryptoPWD']):
             return False
+
         # # Get address.
         # # TODO Do more checks about the address.
         nickname, email, cryptoPWD = self.clear_invalid_char(params['data']['nickname'].strip()), self.clear_invalid_char(params['data']['email'].strip()), self.clear_invalid_char(params['data']['cryptoPWD'].strip())

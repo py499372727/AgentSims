@@ -1,6 +1,7 @@
 from typing import List, Dict, Any
 import datetime
 
+
 class State:
     def __init__(self) -> None:
         # Buildings in scene
@@ -13,6 +14,10 @@ class State:
         self.cash = 10000
         self.execute_experience = False
         self.game_time = datetime.datetime.now()
+        self.profession = ''
+        self.equipments_items = list() # items belong to a specific equipment when using
+        self.npc_items = list()
+        self.all_trade_items = list() # rename all_items to all_trade_items
 
         self.question = {}
         self.question_prompt = ""
@@ -30,7 +35,9 @@ class State:
         self.critic_prompt = ""
         self.memory = {}
         self.memory_prompt = ""
-    
+        self.trade = {}
+        self.trade_prompt = ""
+
     def get_prompts(self) -> Dict[str, Any]:
         return {
             "question": self.question,
@@ -50,7 +57,7 @@ class State:
             "memory": self.memory,
             "memory_prompt": self.memory_prompt,
         }
-    
+
     def to_json(self) -> Dict[str, Any]:
         return {
             "buildings": self.buildings,
@@ -76,7 +83,7 @@ class State:
             "memory": self.memory,
             "memory_prompt": self.memory_prompt,
         }
-    
+
     def from_json(self, obj: Dict[str, Any]):
         self.buildings = obj.get("buildings", list())
         self.equipments = obj.get("equipments", list())
