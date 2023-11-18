@@ -81,10 +81,7 @@ class Agent:
             "{equipment}": equipment,
             "{operation}": act_operation,
             "{description}": description,
-            # "{menu}": menu, #menu相关设定删掉111
             "{act_cache}": self.cache.act_cache,
-            #  Haoran [{"id":"unique id of item","name":"item name",
-            #  "ownerId":"equipmentId or npcId","price":"item price"}]
             "{equipment_items}": self.state.equipments_items,
             "{npc_items}": self.state.npc_items
         })
@@ -103,41 +100,6 @@ class Agent:
             self.log_prompt(self.state.use_prompt, '[**Use_Prompt**]')
             self.state.use = await self.caller.ask(self.state.use_prompt)
         self.log_prompt(self.state.use, '[**Use_Res**]')
-        """
-        desk会多一个earn，其他都是如下：
-        {"continue_time" : "...",
-        "result" : "..."
-        }  
-        如果有交易行为：
-        {"continue_time" : "...",
-        "result" : ["keywords1","keywords2"，"keywords3"]
-        }
-        如果这样就根据keywords查阅物品交易记录，检索出来的统一放入一个字段：{transaction_records}
-        """
-        """
-        如果有交易行为，那么operation中会有buy 或者sell的关键词,可检索。
-        如果有交易行为，激活trade prompt （新写逻辑）
-        trade prompt 输入：The game character's bio : {bio}
-        The game character's ultimate goal : {goal}
-        The game character's Long-Term Memory:  {memory}
-        The game character's plan : {plan}
-        There are these items in the game character's bag: {npc_items}
-        There are these items in the counter equipment: {equipment_items}
-        
-        输出：买{"actionType": "buy",
-        "itemid" : "xxx"
-        }
-        卖{"actionType": "sell",
-        "itemid" : "xxx",
-        "price" ： "xxx"
-        }
-        """
-
-        """
-         {"continue_time": xxx, "result": xxx, "cost": 0, "earn": 0, "equipment_items":[{"id":"unique id of item","name":"item 
-         name","actionType":"change/consume/new···","ownerId":"equipmentId or npcId"}], npc_items:[{"id":"unique id of 
-         item","name":"item name","actionType":"change/consume/new···","belongUid":"equipmentId or npcId"}]}
-          """
 
         if "continue_time" in self.state.use and isinstance(self.state.use["continue_time"], str):
             if re.findall(r"\d+?", self.state.use["continue_time"], re.DOTALL):
@@ -224,19 +186,7 @@ class Agent:
         """
         ## give all equipment_item info to the agent for decision
         equipment_items = self.state.use['result'] # all relavent items info [{'id': 1, 'name': 'ice_cream_1', 'price': '50', 'belongUid': 1}, {...}]
-        # todo trade 这段逻辑可以考虑抽到上层处理，就不需要把all_trade_items放到state里了
-        # transaction_records = list()
-        # for trade in self.state.all_trade_items:
-        #     for key in self.state.use["result"]:
-        #         if key in trade["name"]:
-        #             transaction_records.append(
-        #                 # todo trade 这个格式可以么
-        #
-        #                 {
-        #                     "itemName": trade["name"],
-        #                     "transaction_records": trade["transaction_records"]
-        #                 }
-        #             )
+        
         self.state.trade_prompt = self.prompts.get_text("trade", {
             "{bio}": self.bio,
             "{goal}": self.goal,
