@@ -94,8 +94,21 @@ in Server Terminal, the client has been started successfully.
 ## 6.Create agents and buildings
 You can create agents and buildings at this point. For creation, please refer to the <a href="https://github.com/py499372727/AgentSims/wiki" title="DOCS">DOCS</a> in the wiki or Section 4.1 User Mode in our <a href="https://arxiv.org/abs/2308.04026" title="arXiv">arXiv paper</a>. 
 
+## 7.Set Evaluation Target and Measurements
+In AgentSims, evaluation are made by QA forms. Every k ticks, system would ask the subject agent an evaluation question. You can customize your subject agent, evaluation question, measurement of response in config/eval.json 
+The example in config/eval.json shows an experiment called 'know pH'. The experiment will ask agent Alan 'Are you acquainted with pH' every 1 tick and if 'Yes' in response, the eval function will return True.
+```
+{
+  "id": "know pH", # the human-readable name of evaluation, 
+  "target_nickname": "Alan", # name of the subject agent
+  "query": "Are you acquainted with pH ?", # evaluation qustion 
+  "measurement": " 'Yes' in response" # measurement, 
+  "interval": 1 # Evaluate every 1 tick
+}
 
-## 7.Run Simulation
+```
+
+## 8.Run Simulation
 
 You can start ***tick*** or ***mayor*** with the buttons on the web client. You can also
 start with:
@@ -108,7 +121,7 @@ python -u mayor.py
 
 For the difference with ***tick*** and ***mayor***, refer to our <a href="https://arxiv.org/abs/2308.04026" title="arXiv">arXiv paper</a>.
 
-## 8.Restart
+## 9.Restart
 The following reset steps need to be performed each time upon restarting:
 ```
   rm -rf snapshot/app.json
