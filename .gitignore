@@ -1,5 +1,6 @@
 logs/*
 .idea/*
+client/Build/*
 config/api_key.json
 ws_server.py
 ws_client.py
