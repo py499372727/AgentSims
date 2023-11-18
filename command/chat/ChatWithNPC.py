@@ -77,17 +77,3 @@ class ChatWithNPC(CommandBase):
         # Return nonce and sign message.
         return {'npc': npc_model.as_object(False), 'player': player_model.as_object(False)}
 
-    # 检查结果里是否包含小镇里的人物
-    def checkCenterTownAgentName(self, result):
-        # todo center town 8个agent的人名
-        centralTown = list()
-        for agentName in centralTown:
-            if agentName in result:
-                return agentName
-        return None
-
-    # 随机获取中央小镇里的一个人物
-    def getCenterTownAgentNamnRangdom(self):
-        # todo center town 8个agent的人名
-        centralTown = list()
-        return random.choice(centralTown)
