@@ -70,6 +70,11 @@ class NPCModel(SingleModelBase):
         self.orm['act_timeout'] = SingleModelBase.TIME
         self.orm['chats'] = SingleModelBase.OBJECT
 
+        self.tradeItem = []
+
+        self.ownership = ""
+
+
     def init(self):
         self.name = ''
         self.server = ''
@@ -150,7 +155,6 @@ class NPCModel(SingleModelBase):
         chats = self.chats.get(uid, list())[::-1]
         if chats and self.app.last_game_time - chats[-1]["createTime"] >= 1000 * 60 * 60 * 3:
             chats = list()
-        assert type(content) is str and ': ' in content, f' content should be a string with ": ", your content is {content} '
         chats.append({"createTime": self.app.last_game_time, "content": content.partition(": ")[2], "isSender": isSender})
         chats = chats[::-1]
         if len(chats) > 10:

@@ -22,11 +22,11 @@ class CommandBase(Base):
         self.command_name = None
 
     async def _execute(self, params=None):
-
         # Get token from params.
         token = None
         if self.is_check_token() and 'uid' in params:
             token = params['uid']
+            assert type(token) is str and '-' in token, f'invalid params: {params}'
             try:
                 self.type = token.split('-')[0]
                 self.id = int(token.split('-')[1])

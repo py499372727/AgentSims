@@ -13,7 +13,7 @@ class NPCRegisterModel(ModelBase):
         # Find npc=id map from reversed finding table.
         query = f"""
             SELECT
-                  
+                `npcpair` 
             FROM 
                 `find_npc_id` 
             WHERE 
@@ -21,7 +21,7 @@ class NPCRegisterModel(ModelBase):
         """
         row = db.fetchone(query, True)
         if not row:
-            return 0 #TODO: add erro info
+            return 0
 
         npcpair = row['npcpair'].split(';')
         id = 0

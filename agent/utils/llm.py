@@ -5,7 +5,7 @@ import re
 from agent.utils.llmExpends.BasicCaller import BasicCaller
 from agent.utils.llmExpends.gpt4 import GPT4Caller
 from agent.utils.llmExpends.gpt35 import GPT35Caller
-# TODO: make the LLMCaller more general
+
 choices = {
     'gpt-4': GPT4Caller,
     'gpt-3.5': GPT35Caller
@@ -20,17 +20,22 @@ class LLMCaller:
         self.caller = get_caller(model)()
     
     async def ask(self, prompt: str) -> Dict[str, Any]:
-        result = await self.caller.ask(prompt)
-        try:
-            result = json.loads(result)
-        except Exception:
+        for i in range(2): # retry times
+            result = await self.caller.ask(prompt)
             try:
-                info = re.findall(r"\{.*\}", result, re.DOTALL)
-                if info:
-                    info = info[-1]
-                    result = json.loads(info)
-                else:
-                    result = {"response": result}
-            except Exception:
+                result = json.loads(result)
+                return result
+            except:
+                continue
+
+        try:
+            info = re.findall(r"\{.*\}", result, re.DOTALL)
+            if info:
+                info = info[-1]
+                result = json.loads(info)
+            else:
                 result = {"response": result}
+        except Exception:
+            result = {"response": result}
+
         return result

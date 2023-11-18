@@ -50,6 +50,7 @@ class Mayor:
         msg = await ws.recv()
         if msg:
             info = json.loads(msg)
+            print(msg)
             if info["code"] == 200:
                 self.mayor_info = info["data"]
     
@@ -100,7 +101,7 @@ class Mayor:
                 self.result = {"result": "fail", "msg": "goal is blank"}
             home_building = self.mayor["home_building"]
             home_building_to_id = {x["name"]: x["id"] for x in self.mayor_info.get("buildings", list())}
-
+            print(home_building, home_building_to_id)
             if home_building not in home_building_to_id:
                 self.result = {"result": "fail", "msg": "home_building not in choices"}
             else:

@@ -12,24 +12,20 @@ class Base:
 
     # Get a single user model object.
     # create: Create a new object or not when data doesn't exist.
-    def get_single_model(self, name, id=None, create=True, *args, **kwargs):
-        # name: NPC, Map, Building
-        # id: 4 digit number
+    def get_single_model(self, name, id=None, create=True):
         if id is None:
             id = self.get_id()
-        if id is None or ( type(id) is int and  id <= 0):
+        if id is None or id <= 0:
             return None
-
 
         cache_key = f"{name}_{id}"
         if cache_key not in self.cmd.model_cache:
             # Import module.
-            # TODO: too vulnerable
             module = importlib.import_module(f"model.{name}Model")
             # Get class.
             cls = getattr(module, f"{name.split('.')[-1]}Model")
             # Create model.
-            model = cls(self.app, self.cmd, id, *args, **kwargs)
+            model = cls(self.app, self.cmd, id)
 
             if not model.retrieve():
                 if create:

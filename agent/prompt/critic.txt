@@ -10,6 +10,7 @@ The game character's bio : {bio}
 The game character's ultimate goal : {goal}
 The game character's Long-Term Memory:  {memory}
 Acts finished in this loop : {act_cache}
+Number of acts finished in this loop: {num_acts}
 
 
    You must follow the following criteria: 

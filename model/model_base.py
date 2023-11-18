@@ -23,6 +23,9 @@ class ModelBase(Base):
     def flush(self):
         pass
 
+    def retrieve(self):
+        return True
+
     # Get the table name.
     # The default is the class name removed right 'Model'.
     def get_table_name(self):

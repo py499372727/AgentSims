@@ -9,7 +9,7 @@ abs_path = os.path.dirname(os.path.realpath(__file__))
 
 class GPT35Caller(BasicCaller):
     def __init__(self) -> None:
-        self.model = "gpt-3.5-turbo"
+        self.model = "gpt-3.5"
         self.api_key = ""
         with open(os.path.join(abs_path, "..", "..", "..", "config", "api_key.json"), "r", encoding="utf-8") as api_file:
             api_keys = json.loads(api_file.read())
