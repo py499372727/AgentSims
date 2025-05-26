@@ -10,4 +10,3 @@ else
 fi
 nohup python3 -u main.py > nohup.log 2>&1 &
 echo "process python server restarted"
-tail -f nohup.log
